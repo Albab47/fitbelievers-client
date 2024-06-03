@@ -10,5 +10,5 @@ body {
 }
 
 .mySwiper {
-  @apply my-8 xl:my-12;
+  @apply my-8 py-8 xl:my-12;
 }
