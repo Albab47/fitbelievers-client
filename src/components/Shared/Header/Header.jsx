@@ -53,7 +53,7 @@ const Header = () => {
   );
 
   return (
-    <header className="bg-white bg-black/70 backdrop-blur-md shadow-md w-full fixed top-0 left-0 right-0 z-10">
+    <header className="bg-white bg-black/80 backdrop-blur-md shadow-md w-full fixed top-0 left-0 right-0 z-10">
       <nav className="flex h-16 container 2xl:px-32 items-center gap-16 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex text-teal-600" href="#">
           <img
