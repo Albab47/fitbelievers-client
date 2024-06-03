@@ -56,9 +56,9 @@ const AuthProvider = ({ children }) => {
   };
 
   // Save User
-  const saveUser = (email) => {
+  const saveUser = (user) => {
     // TODO: post user info to db
-    console.log(email);
+    console.log(user);
   };
 
   // Observer
@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
-        saveUser(currentUser.email);
+        saveUser(currentUser);
       }
       setLoading(false);
     });
