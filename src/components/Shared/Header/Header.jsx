@@ -12,7 +12,7 @@ import { useState } from "react";
 import NavbarDrawer from "../../Drawer/NavbarDrawer";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const user = null;
 
   const handleClose = () => setIsOpen(false);
@@ -53,7 +53,7 @@ const Header = () => {
   );
 
   return (
-    <header className="bg-white">
+    <header className="bg-white bg-black/70 backdrop-blur-md shadow-md w-full fixed top-0 left-0 right-0 z-10">
       <nav className="flex h-16 container 2xl:px-32 items-center gap-16 px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex text-teal-600" href="#">
           <img
@@ -61,7 +61,7 @@ const Header = () => {
             className="mr-2 h-7 sm:h-8"
             alt="Flowbite React Logo"
           />
-          <span className="self-center text-dark font-display whitespace-nowrap text-3xl dark:text-white">
+          <span className="self-center text-white/90 font-display whitespace-nowrap text-3xl dark:text-white">
             Fit<span className="text-lime-400">Believers</span>
           </span>
         </Link>
@@ -98,12 +98,13 @@ const Header = () => {
                 </Dropdown>
               ) : (
                 <Link
-                  className="flex items-center rounded-xl bg-primary text-dark px-5 py-2 text-sm font-semibold transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring active:bg-lime-500"
+                  className="flex items-center rounded-full bg-primary text-dark px-5 py-2 text-sm font-semibold transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring active:bg-lime-500"
                   to="/login"
                 >
                   <IoLogInOutline className="mr-2 size-5" />
                   Login
                 </Link>
+                
               )}
             </div>
 
