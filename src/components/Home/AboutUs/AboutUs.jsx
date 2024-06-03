@@ -1,7 +1,7 @@
 import DottedBox from "../DottedBox/DottedBox";
-import aboutUsImg1 from '../../../assets/aboutUs-1.jpg';
-import aboutUsImg2 from '../../../assets/aboutUs-2.jpg';
-import aboutUsImg3 from '../../../assets/aboutUs-3.jpg';
+import aboutUsImg1 from "../../../assets/aboutUs-1.jpg";
+import aboutUsImg2 from "../../../assets/aboutUs-2.jpg";
+import aboutUsImg3 from "../../../assets/aboutUs-3.jpg";
 
 const AboutUs = () => {
   return (
@@ -47,7 +47,7 @@ const AboutUs = () => {
                   About Us
                 </span>
                 <h2 className="mb-5 text-4xl font-display text-dark dark:text-white md:text-6xl">
-                More Than Just A Workout Space
+                  More Than Just A Workout Space
                 </h2>
                 <p className="mb-5 text-base text-body-color dark:text-dark-6 text-gray-500 dark:text-gray-300">
                   At StrongBeliever Gym, we believe in more than just physical
@@ -63,10 +63,7 @@ const AboutUs = () => {
                   include a dedicated prayer room, ensuring that your spiritual
                   practices are respected and accommodated.
                 </p>
-                <a
-                  href="javascript:void(0)"
-                  className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
-                >
+                <a className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90">
                   Get Started
                 </a>
               </div>

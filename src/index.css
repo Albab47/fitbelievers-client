@@ -8,3 +8,7 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+.mySwiper {
+  @apply my-8 xl:my-12;
+}
