@@ -8,6 +8,8 @@ const ReviewSlider = () => {
       class="mySwiper"
       pagination="true"
       navigation="true"
+      loop="true"
+      autoplay-delay="5000"
       pagination-clickable="true"
       space-between="30"
       breakpoints={JSON.stringify({
