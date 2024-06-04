@@ -10,13 +10,15 @@ import {
 } from "flowbite-react";
 import { useState } from "react";
 import NavbarDrawer from "../../Drawer/NavbarDrawer";
+import useAuth from "../../../hooks/useAuth";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = null;
+  const { user, logOut } = useAuth();
+  console.log(user);
 
   const handleClose = () => setIsOpen(false);
-  
+
   const navLinkStyle = ({ isActive }) =>
     `${
       isActive
@@ -79,12 +81,12 @@ const Header = () => {
                 <Dropdown
                   arrowIcon={false}
                   inline
-                  label={<Avatar alt="User menu" img="" rounded />}
+                  label={<Avatar alt="User menu" img={user.photoURL} rounded />}
                 >
                   <DropdownHeader>
-                    <span className="block text-sm">Bonnie Green</span>
+                    <span className="block text-sm">{user?.displayName}</span>
                     <span className="block truncate text-sm font-medium">
-                      name@flowbite.com
+                      {user?.email}
                     </span>
                   </DropdownHeader>
                   <Link to={`/dashboard`}>
@@ -92,9 +94,9 @@ const Header = () => {
                   </Link>
                   <DropdownItem>Profile</DropdownItem>
                   <DropdownDivider />
-                  <Link>
-                    <DropdownItem>Sign out</DropdownItem>
-                  </Link>
+                  <DropdownItem onClick={logOut}>
+                    <DropdownItem>Logout</DropdownItem>
+                  </DropdownItem>
                 </Dropdown>
               ) : (
                 <Link
@@ -104,12 +106,14 @@ const Header = () => {
                   <IoLogInOutline className="mr-2 size-5" />
                   Login
                 </Link>
-                
               )}
             </div>
 
             {/* menu drawer btn */}
-            <button onClick={() => setIsOpen(true)} className="block rounded bg-gray-100 hover:bg-opacity-85 p-2 text-gray-600 transition hover:text-gray-600/75 md:hidden">
+            <button
+              onClick={() => setIsOpen(true)}
+              className="block rounded bg-gray-100 hover:bg-opacity-85 p-2 text-gray-600 transition hover:text-gray-600/75 md:hidden"
+            >
               <span className="sr-only">Toggle menu</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +135,11 @@ const Header = () => {
       </nav>
 
       {/* Drawer */}
-      <NavbarDrawer isOpen={isOpen} handleClose={handleClose} navLinks={navLinks} />
+      <NavbarDrawer
+        isOpen={isOpen}
+        handleClose={handleClose}
+        navLinks={navLinks}
+      />
     </header>
   );
 };

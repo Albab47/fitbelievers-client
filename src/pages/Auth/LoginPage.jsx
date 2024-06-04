@@ -1,20 +1,66 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FcGoogle } from "react-icons/fc";
 import { HiMail } from "react-icons/hi";
 import { IoKey } from "react-icons/io5";
-import { IoMdEye } from "react-icons/io";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import useAuth from "../../hooks/useAuth";
+import useShowPassword from "../../hooks/useShowPassword";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import ErrorMsg from "../../components/Shared/ErrorMsg/ErrorMsg";
 
 const LoginPage = () => {
+  const { signIn, loginWithGoogle } = useAuth();
+  const { showPassword, handleShowPassword } = useShowPassword();
+  const navigate = useNavigate();
+  const location = useLocation()
+  const from = location?.state?.from?.pathname || "/";
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const onSubmit = async ({ email, password }) => {
+    try {
+      const result = await signIn(email, password);
+      if (result.user) {
+        reset()
+        navigate(from, {replace: true})
+        return toast.success("Login successful");
+      }
+    } catch (err) {
+      const errorCode = err.code;
+      if (errorCode === "auth/invalid-credential") {
+        toast.error("Email and password do not match. Please try again.");
+      }
+    }
+  };
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      const result = await loginWithGoogle();
+      if (result.user) {
+        navigate(from, {replace: true})
+        toast.success(`Logged in as ${result.user.displayName}`);
+      }
+    } catch (err) {
+      const errorCode = err.code;
+      toast.error(errorCode);
+    }
+  };
 
   return (
-    <section className="h-screen flex items-center">
+    <section className="min-h-screen flex items-center">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
         <div className="hidden bg-cover lg:block lg:w-1/2">
           <img src="https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80" />
         </div>
 
-        <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
           </div>
@@ -24,7 +70,7 @@ const LoginPage = () => {
           </p>
 
           {/* google login */}
-          <button className="flex items-center w-full justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <button type="button" onClick={handleLoginWithGoogle} className="flex items-center w-full justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
             <FcGoogle />
             <span className="mx-2">Sign in with Google</span>
           </button>
@@ -47,17 +93,25 @@ const LoginPage = () => {
             >
               Email Address
             </label>
-            <div className="relative flex items-center">
-              <span className="absolute left-3">
+            <div className="relative ">
+              <span className="absolute left-3 top-2.5">
                 <HiMail className="text-gray-400 size-5" />
               </span>
 
               <input
                 id="email"
                 type="email"
-                className="border-gray-200 bg-white text-sm text-gray-700 block w-full py-2 shadow-sm rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary/90 focus:ring-primary/50 focus:outline-none focus:ring focus:ring-opacity-30"
+                className="border-gray-200 bg-white text-sm text-gray-700 block w-full py-2.5 shadow-sm rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary/90 focus:ring-primary/50 focus:outline-none focus:ring focus:ring-opacity-30"
                 placeholder="name@gmail.com"
+                {...register("email", {
+                  required: "Please enter your email",
+                  pattern: {
+                    value: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+                    message: "Email is not valid",
+                  },
+                })}
               />
+              {errors.email && <ErrorMsg>{errors.email?.message}</ErrorMsg>}
             </div>
           </div>
 
@@ -75,26 +129,32 @@ const LoginPage = () => {
               </a>
             </div>
 
-            <div className="relative flex items-center">
-              <span className="absolute left-3">
+            <div className="relative">
+              <span className="absolute left-3 top-2.5">
                 <IoKey className="text-gray-400 size-5" />
               </span>
 
               <input
                 id="password"
-                type="password"
-                className="border-gray-200 bg-white text-sm text-gray-700 block w-full py-2 shadow-sm rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary/90 focus:ring-primary/50 focus:outline-none focus:ring focus:ring-opacity-30"
+                type={showPassword ? "text" : "password"}
+                className="border-gray-200 bg-white text-sm text-gray-700 block w-full py-2.5 shadow-sm rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-primary dark:focus:border-primary/90 focus:ring-primary/50 focus:outline-none focus:ring focus:ring-opacity-30"
                 placeholder="******"
+                {...register("password", {
+                  required: "Please enter your password",
+                })}
               />
+              {errors.password && (
+                <ErrorMsg>{errors.password?.message}</ErrorMsg>
+              )}
 
-              <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
-                <IoMdEye className="text-gray-500" />
+              <span className="absolute text-gray-500 inset-y-0 end-0 grid place-content-center px-4">
+                {showPassword ? <IoMdEyeOff onClick={handleShowPassword} /> : <IoMdEye onClick={handleShowPassword} />}
               </span>
             </div>
           </div>
 
           <div className="mt-6">
-            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-dark capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary/80 focus:outline-none focus:ring focus:ring-lime-300 focus:ring-opacity-50">
+            <button type="submit" className="w-full px-6 py-3 text-sm font-medium tracking-wide text-dark capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary/80 focus:outline-none focus:ring focus:ring-lime-300 focus:ring-opacity-50">
               Login
             </button>
           </div>
@@ -108,7 +168,7 @@ const LoginPage = () => {
               Create One
             </Link>
           </p>
-        </div>
+        </form>
       </div>
     </section>
   );

@@ -11,7 +11,6 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
-// import axios from "axios";
 // Firebase Auth
 const auth = getAuth(app);
 export const AuthContext = createContext();
@@ -56,18 +55,32 @@ const AuthProvider = ({ children }) => {
   };
 
   // Save User
-  const saveUser = (user) => {
-    // TODO: post user info to db
-    console.log(user);
-  };
+  // const saveUser = (user) => {
+  //   // TODO: post user info to db
+  //   console.log(user);
+  //   const user = {
+  //     email: user?.email,
+  //     role: "member",
+  //     status: "verified"
+  //   }
+  //   const {data} = axios.post(`${import.meta.env.VITE_API_URL}/users`, user);
+  //   console.log(data);
+  // };
+
+  // Get token from server
+  // const getToken = (email) => {
+  //   const {data} = axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {email})
+  //   console.log(data);
+  // }
 
   // Observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      if (currentUser) {
-        saveUser(currentUser);
-      }
+      console.log('current user -->', currentUser);
+      // if (currentUser) {
+      //   saveUser(currentUser);
+      // }
       setLoading(false);
     });
     return () => {
