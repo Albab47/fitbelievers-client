@@ -173,7 +173,7 @@ const LoginPage = () => {
               fullSized
               className="shrink-0 rounded-xl"
             >
-              Create an account
+              Login
             </Button>
           </div>
 

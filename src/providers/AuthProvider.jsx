@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
   // Logout user
   const logOut = () => {
     setLoading(true);
-    localStorage.removeItem('access-token')
+    localStorage.removeItem("access-token");
     return signOut(auth);
   };
 
@@ -61,24 +61,21 @@ const AuthProvider = ({ children }) => {
     const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
       email,
     });
-    localStorage.setItem('access-token', data.token);
+    localStorage.setItem("access-token", data.token);
   };
 
   // Save User
-  // const saveUser = async (currentUser) => {
-  //   // TODO: post user info to db
-  //   console.log(currentUser);
-  //   const user = {
-  //     email: currentUser?.email,
-  //     role: "member",
-  //     status: "verified",
-  //   };
-  //   const { data } = await axios.post(
-  //     `${import.meta.env.VITE_API_URL}/users`,
-  //     user
-  //   );
-  //   console.log(data);
-  // };
+  const saveUser = async (currentUser) => {
+    const user = {
+      email: currentUser?.email,
+      role: "member",
+      status: "verified",
+    };
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/users`,
+      user
+    );
+  };
 
   // Observer
   useEffect(() => {
@@ -87,7 +84,7 @@ const AuthProvider = ({ children }) => {
       console.log("current user -->", currentUser);
       if (currentUser) {
         getToken(currentUser.email);
-        // saveUser(currentUser);
+        saveUser(currentUser);
       }
       setLoading(false);
     });
