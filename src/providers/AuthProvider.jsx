@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 // Firebase Auth
 const auth = getAuth(app);
 export const AuthContext = createContext();
@@ -51,36 +52,43 @@ const AuthProvider = ({ children }) => {
   // Logout user
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem('access-token')
     return signOut(auth);
   };
 
+  // Get token from server
+  const getToken = async (email) => {
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {
+      email,
+    });
+    localStorage.setItem('access-token', data.token);
+  };
+
   // Save User
-  // const saveUser = (user) => {
+  // const saveUser = async (currentUser) => {
   //   // TODO: post user info to db
-  //   console.log(user);
+  //   console.log(currentUser);
   //   const user = {
-  //     email: user?.email,
+  //     email: currentUser?.email,
   //     role: "member",
-  //     status: "verified"
-  //   }
-  //   const {data} = axios.post(`${import.meta.env.VITE_API_URL}/users`, user);
+  //     status: "verified",
+  //   };
+  //   const { data } = await axios.post(
+  //     `${import.meta.env.VITE_API_URL}/users`,
+  //     user
+  //   );
   //   console.log(data);
   // };
-
-  // Get token from server
-  // const getToken = (email) => {
-  //   const {data} = axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {email})
-  //   console.log(data);
-  // }
 
   // Observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log('current user -->', currentUser);
-      // if (currentUser) {
-      //   saveUser(currentUser);
-      // }
+      console.log("current user -->", currentUser);
+      if (currentUser) {
+        getToken(currentUser.email);
+        // saveUser(currentUser);
+      }
       setLoading(false);
     });
     return () => {

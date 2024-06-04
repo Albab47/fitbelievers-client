@@ -9,12 +9,13 @@ import useShowPassword from "../../hooks/useShowPassword";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import ErrorMsg from "../../components/Shared/ErrorMsg/ErrorMsg";
+import { Button } from "flowbite-react";
 
 const LoginPage = () => {
-  const { signIn, loginWithGoogle } = useAuth();
+  const { signIn, loginWithGoogle, loading } = useAuth();
   const { showPassword, handleShowPassword } = useShowPassword();
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
 
   const {
@@ -28,8 +29,8 @@ const LoginPage = () => {
     try {
       const result = await signIn(email, password);
       if (result.user) {
-        reset()
-        navigate(from, {replace: true})
+        reset();
+        navigate(from, { replace: true });
         return toast.success("Login successful");
       }
     } catch (err) {
@@ -44,7 +45,7 @@ const LoginPage = () => {
     try {
       const result = await loginWithGoogle();
       if (result.user) {
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
         toast.success(`Logged in as ${result.user.displayName}`);
       }
     } catch (err) {
@@ -60,7 +61,10 @@ const LoginPage = () => {
           <img src="https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80" />
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="w-full px-6 py-8 md:px-8 lg:w-1/2">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full px-6 py-8 md:px-8 lg:w-1/2"
+        >
           <div className="flex justify-center mx-auto">
             <img className="w-auto h-7 sm:h-8" src={logo} alt="" />
           </div>
@@ -70,7 +74,11 @@ const LoginPage = () => {
           </p>
 
           {/* google login */}
-          <button type="button" onClick={handleLoginWithGoogle} className="flex items-center w-full justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <button
+            type="button"
+            onClick={handleLoginWithGoogle}
+            className="flex items-center w-full justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+          >
             <FcGoogle />
             <span className="mx-2">Sign in with Google</span>
           </button>
@@ -148,15 +156,25 @@ const LoginPage = () => {
               )}
 
               <span className="absolute text-gray-500 inset-y-0 end-0 grid place-content-center px-4">
-                {showPassword ? <IoMdEyeOff onClick={handleShowPassword} /> : <IoMdEye onClick={handleShowPassword} />}
+                {showPassword ? (
+                  <IoMdEyeOff onClick={handleShowPassword} />
+                ) : (
+                  <IoMdEye onClick={handleShowPassword} />
+                )}
               </span>
             </div>
           </div>
 
           <div className="mt-6">
-            <button type="submit" className="w-full px-6 py-3 text-sm font-medium tracking-wide text-dark capitalize transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary/80 focus:outline-none focus:ring focus:ring-lime-300 focus:ring-opacity-50">
-              Login
-            </button>
+            <Button
+              type="submit"
+              disabled={loading}
+              gradientMonochrome="lime"
+              fullSized
+              className="shrink-0 rounded-xl"
+            >
+              Create an account
+            </Button>
           </div>
 
           <p className="mt-8 text-xs font-light text-center text-gray-400">

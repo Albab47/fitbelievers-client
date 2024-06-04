@@ -15,7 +15,6 @@ import useAuth from "../../../hooks/useAuth";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
-  console.log(user);
 
   const handleClose = () => setIsOpen(false);
 
