@@ -11,6 +11,10 @@ import {
 import { useState } from "react";
 import NavbarDrawer from "../../Drawer/NavbarDrawer";
 import useAuth from "../../../hooks/useAuth";
+import { TbLogout2 } from "react-icons/tb";
+import { FaUser } from "react-icons/fa6";
+import { RxDashboard } from "react-icons/rx";
+import { IoSettingsOutline } from "react-icons/io5";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -89,13 +93,11 @@ const Header = () => {
                     </span>
                   </DropdownHeader>
                   <Link to={`/dashboard`}>
-                    <DropdownItem>Dashboard</DropdownItem>
+                    <DropdownItem icon={RxDashboard}>Dashboard</DropdownItem>
                   </Link>
-                  <DropdownItem>Profile</DropdownItem>
+                  <DropdownItem icon={IoSettingsOutline}>Profile</DropdownItem>
                   <DropdownDivider />
-                  <DropdownItem onClick={logOut}>
-                    <DropdownItem>Logout</DropdownItem>
-                  </DropdownItem>
+                  <DropdownItem onClick={logOut} icon={TbLogout2}>Logout</DropdownItem>
                 </Dropdown>
               ) : (
                 <Link

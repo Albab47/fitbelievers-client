@@ -23,7 +23,7 @@ import PropTypes from "prop-types";
 MenuItem.propTypes = {
   label: PropTypes.string,
   address: PropTypes.string,
-  icon: PropTypes.elementType,
+  icon: PropTypes.func,
 };
 
 export default MenuItem;
