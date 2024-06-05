@@ -1,24 +1,35 @@
 import { NavLink } from "react-router-dom";
-
-// "flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+import PropTypes from "prop-types";
+import { useContext } from "react";
+import { SidebarContext } from "../Sidebar/Sidebar";
 
 const MenuItem = ({ label, address, icon: Icon }) => {
+  const { expended } = useContext(SidebarContext);
+
   return (
     <NavLink
       to={address}
       className={({ isActive }) =>
-        `flex items-center px-4 py-2 mt-5 ${
+        `relative flex items-center cursor-pointer px-4 py-2 mt-5 ${
           isActive ? "text-primary bg-primary/10" : "text-gray-300"
-        } transition-colors duration-300 transform rounded-md hover:bg-primary/10 hover:text-primary`
+        } group transition-colors duration-300 transform rounded-md hover:bg-primary/10 hover:text-primary`
       }
     >
-      <Icon />
-      <span className="mx-4 font-medium">{label}</span>
+      <Icon className="size-5" />
+      <span
+        className={`font-medium overflow-hidden transition-all ${
+          expended ? "w-44 mx-4" : "w-0"
+        }`}
+      >
+        {label}
+      </span>
+
+      <p className="absolute w-auto left-full ml-6 px-4 py-1 font-medium bg-primary/20 text-lime-600 text-sm opacity-20 -translate-x-3 invisible transition-all rounded-lg group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+        {label}
+      </p>
     </NavLink>
   );
 };
-
-import PropTypes from "prop-types";
 
 MenuItem.propTypes = {
   label: PropTypes.string,

@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Dashboard/Sidebar/Sidebar";
 
 const DashboardLayout = () => {
@@ -7,7 +8,9 @@ const DashboardLayout = () => {
       <Sidebar />
 
       {/* Outlet - dynamic pages */}
-      <div>Content goes here</div>
+      <div className="bg-gray-50 flex-1">Content goes here
+        <Outlet />
+      </div>
     </div>
   );
 };
