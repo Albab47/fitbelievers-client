@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const SectionTitle = ({heading, subHeading}) => {
   return (
     <div className="mt-6 flex justify-center">
@@ -18,5 +20,11 @@ const SectionTitle = ({heading, subHeading}) => {
     </div>
   );
 };
+
+SectionTitle.propTypes = {
+    heading: PropTypes.string,
+    subHeading: PropTypes.string,
+  };
+
 
 export default SectionTitle;

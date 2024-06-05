@@ -32,8 +32,8 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="bg-white dark:bg-gray-900">
-      <div className="container 2xl:px-36 py-24 mx-auto">
+    <section className="bg-white dark:bg-gray-900 my-24">
+      <div className="container 2xl:px-36">
         <SectionTitle heading="Why Chose Us" subHeading="Features" />
 
         {/* flex container */}
