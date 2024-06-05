@@ -8,7 +8,7 @@ const DashboardLayout = () => {
       <Sidebar />
 
       {/* Outlet - dynamic pages */}
-      <div className="bg-gray-50 flex-1">Content goes here
+      <div className="bg-gray-100 flex-1">Content goes here
         <Outlet />
       </div>
     </div>

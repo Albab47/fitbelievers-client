@@ -24,9 +24,11 @@ const MenuItem = ({ label, address, icon: Icon }) => {
         {label}
       </span>
 
-      <p className="absolute w-auto left-full ml-6 px-4 py-1 font-medium bg-primary/20 text-lime-600 text-sm opacity-20 -translate-x-3 invisible transition-all rounded-lg group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
-        {label}
-      </p>
+      {!expended && (
+        <p className="absolute w-auto left-full ml-6 px-4 py-1 font-medium bg-primary/20 text-lime-600 text-sm opacity-20 -translate-x-3 invisible transition-all rounded-lg group-hover:visible group-hover:opacity-100 group-hover:translate-x-0">
+          {label}
+        </p>
+      )}
     </NavLink>
   );
 };

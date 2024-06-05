@@ -5,12 +5,17 @@ import { RouterProvider } from "react-router-dom";
 import router from "./routes/Routes.jsx";
 import { register } from "swiper/element/bundle";
 import AuthProvider from "./providers/AuthProvider.jsx";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 register();
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
