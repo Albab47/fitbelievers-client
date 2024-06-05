@@ -8,11 +8,15 @@ import MemberMenu from "../Menu/MemberMenu";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { createContext, useState } from "react";
 import { Link } from "react-router-dom";
+import useRole from "../../../hooks/useRole";
+import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 
 export const SidebarContext = createContext();
 
 const Sidebar = () => {
   const [expended, setExpended] = useState(true);
+  const { role, isLoading } = useRole();
+  console.log(role);
 
   return (
     <aside
@@ -28,45 +32,49 @@ const Sidebar = () => {
         {expended ? <FaChevronLeft /> : <FaChevronRight />}
       </button>
 
-      <div className="flex flex-col justify-between flex-1 mt-6">
-        <SidebarContext.Provider value={{ expended }}>
-          <nav>
-            <MenuItem
-              label="Dashboard"
-              address="/dashboard"
-              icon={RxDashboard}
-            />
+      {isLoading ? (
+        <SecondaryLoader />
+      ) : (
+        <div className="flex flex-col justify-between flex-1 mt-6">
+          <SidebarContext.Provider value={{ expended }}>
+            <nav>
+              <MenuItem
+                label="Dashboard"
+                address="/dashboard"
+                icon={RxDashboard}
+              />
 
-            <AdminMenu />
-            {/* <MemberMenu /> */}
-            {/* <TrainerMenu /> */}
+              <AdminMenu />
+              {/* <MemberMenu /> */}
+              {/* <TrainerMenu /> */}
 
-            <MenuItem
-              address="/dashboard/add-blog"
-              label="Add New Blog"
-              icon={FaRegEdit}
-            />
+              <MenuItem
+                address="/dashboard/add-blog"
+                label="Add New Blog"
+                icon={FaRegEdit}
+              />
 
-            <hr className="my-6 border-gray-700 dark:border-gray-600" />
-          </nav>
+              <hr className="my-6 border-gray-700 dark:border-gray-600" />
+            </nav>
 
-          {/* sidebar foot */}
-          <Link className="flex p-2">
-            <img
-              className="object-cover rounded-full size-8"
-              src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
-              alt="avatar"
-            />
-            <span
-              className={`font-medium text-gray-300 transition-all overflow-hidden ${
-                expended ? "w-20 mx-2" : "w-0"
-              }`}
-            >
-              John Doe
-            </span>
-          </Link>
-        </SidebarContext.Provider>
-      </div>
+            {/* sidebar foot */}
+            <Link className="flex p-2">
+              <img
+                className="object-cover rounded-full size-8"
+                src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                alt="avatar"
+              />
+              <span
+                className={`font-medium text-gray-300 transition-all overflow-hidden ${
+                  expended ? "w-20 mx-2" : "w-0"
+                }`}
+              >
+                John Doe
+              </span>
+            </Link>
+          </SidebarContext.Provider>
+        </div>
+      )}
     </aside>
   );
 };
