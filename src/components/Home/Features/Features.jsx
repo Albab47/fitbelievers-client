@@ -1,6 +1,7 @@
 import { FaDumbbell, FaUsers } from "react-icons/fa";
 import { GiWeightLiftingUp } from "react-icons/gi";
 import { FaMosque } from "react-icons/fa6";
+import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 
 const features = [
   {
@@ -33,17 +34,10 @@ const Features = () => {
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="container 2xl:px-36 py-24 mx-auto">
-        <h1 className="text-4xl text-center font-display text-gray-800 lg:text-6xl dark:text-white">
-          Why Chose Us
-        </h1>
-        <div className="mt-2 text-center">
-          <span className="inline-block w-40 h-1 bg-lime-400 rounded-full"></span>
-          <span className="inline-block w-3 h-1 ml-1 bg-lime-400 rounded-full"></span>
-          <span className="inline-block w-1 h-1 ml-1 bg-lime-400 rounded-full"></span>
-        </div>
+        <SectionTitle heading="Why Chose Us" subHeading="Features" />
 
         {/* flex container */}
-        <div className="mt-8 xl:mt-12 space-y-8 lg:space-y-0 lg:flex lg:gap-16 lg:items-center lg:justify-between">
+        <div className="mt-8 xl:mt-16 space-y-8 lg:space-y-0 lg:flex lg:gap-16 lg:items-center lg:justify-between">
           {/* image */}
           <div className="w-full lg:w-2/5 lg:justify-center">
             <img

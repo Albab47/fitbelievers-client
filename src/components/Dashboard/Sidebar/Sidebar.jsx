@@ -10,13 +10,14 @@ import { createContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useRole from "../../../hooks/useRole";
 import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
+import useAuth from "../../../hooks/useAuth.js";
 
 export const SidebarContext = createContext();
 
 const Sidebar = () => {
   const [expended, setExpended] = useState(true);
   const { role, isLoading } = useRole();
-  console.log(role);
+  const { user, loading } = useAuth();
 
   return (
     <aside
@@ -32,7 +33,7 @@ const Sidebar = () => {
         {expended ? <FaChevronLeft /> : <FaChevronRight />}
       </button>
 
-      {isLoading ? (
+      {isLoading || loading ? (
         <SecondaryLoader />
       ) : (
         <div className="flex flex-col justify-between flex-1 mt-6">
@@ -44,15 +45,17 @@ const Sidebar = () => {
                 icon={RxDashboard}
               />
 
-              <AdminMenu />
-              {/* <MemberMenu /> */}
-              {/* <TrainerMenu /> */}
+              {role === "admin" && <AdminMenu />}
+              {role === "trainer" && <TrainerMenu />}
+              {role === "member" && <MemberMenu />}
 
-              <MenuItem
-                address="/dashboard/add-blog"
-                label="Add New Blog"
-                icon={FaRegEdit}
-              />
+              {(role === "admin" || role === "trainer") && (
+                <MenuItem
+                  address="/dashboard/add-blog"
+                  label="Add New Blog"
+                  icon={FaRegEdit}
+                />
+              )}
 
               <hr className="my-6 border-gray-700 dark:border-gray-600" />
             </nav>
@@ -61,15 +64,15 @@ const Sidebar = () => {
             <Link className="flex p-2">
               <img
                 className="object-cover rounded-full size-8"
-                src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+                src={user?.photoURL}
                 alt="avatar"
               />
               <span
                 className={`font-medium text-gray-300 transition-all overflow-hidden ${
-                  expended ? "w-20 mx-2" : "w-0"
+                  expended ? "w-36 mx-2" : "w-0"
                 }`}
               >
-                John Doe
+                {user?.displayName}
               </span>
             </Link>
           </SidebarContext.Provider>
