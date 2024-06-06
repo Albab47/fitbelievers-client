@@ -5,11 +5,13 @@ import FeaturesClasses from "../../components/Home/FeaturedClasses/FeaturesClass
 import Features from "../../components/Home/Features/Features";
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
-import { RingLoader } from "react-spinners";
+
+import useTrainers from "../../hooks/useTrainers";
+import Team from "../../components/Home/Team/Team";
+import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 
 const HomePage = () => {
   const axiosCommon = useAxiosCommon();
-
   const { data: classes, isLoading } = useQuery({
     queryKey: ["top-classes"],
     queryFn: async () => {
@@ -17,16 +19,16 @@ const HomePage = () => {
       return data;
     },
   });
+  const { trainers, isLoading: isTrainersLoading } = useTrainers("team", 3);
 
-  console.log(classes);
+  if (isLoading || isTrainersLoading) return <SecondaryLoader size={70} />
 
-  if (isLoading) return <RingLoader />;
-  
   return (
     <div>
       <Banner />
       <Features />
       <FeaturesClasses classes={classes} />
+      <Team trainers={trainers} />
       <AboutUs />
       <Testimonials />
     </div>

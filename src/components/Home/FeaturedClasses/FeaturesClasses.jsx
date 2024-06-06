@@ -10,7 +10,7 @@ const FeaturesClasses = ({classes}) => {
 
         {/* grid container */}
         <div className="py-8 md:py-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {classes.map((classData) => (
+          {classes?.map((classData) => (
             <FeaturedClass key={classData._id} classData={classData} />
           ))}
         </div>

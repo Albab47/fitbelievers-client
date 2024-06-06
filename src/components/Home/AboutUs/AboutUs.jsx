@@ -6,7 +6,7 @@ import aboutUsImg3 from "../../../assets/aboutUs-3.jpg";
 const AboutUs = () => {
   return (
     <>
-      <section className="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-white dark:bg-dark">
+      <section className="overflow-hidden my-24 bg-white dark:bg-dark">
         <div className="container 2xl:px-36 mx-auto">
           <div className="flex flex-wrap items-center justify-between -mx-4">
             <div className="w-full px-4 lg:w-6/12">
