@@ -12,7 +12,7 @@ const Team = ({ trainers }) => {
 
         <div className="py-8 md:py-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {trainers?.map((trainer) => (
-            <TrainerCard key={trainer._id} trainer={trainer} />
+            <TrainerCard key={trainer._id} trainer={trainer} isHome={true} />
           ))}
         </div>
       </div>

@@ -44,7 +44,7 @@ const Header = () => {
       </li>
 
       <li>
-        <NavLink className={navLinkStyle} to="/trainers">
+        <NavLink className={navLinkStyle} to="/trainers" end>
           Trainers
         </NavLink>
       </li>
