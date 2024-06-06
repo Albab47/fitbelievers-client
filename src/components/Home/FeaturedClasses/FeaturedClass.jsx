@@ -1,18 +1,32 @@
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
+import { HiOutlineUsers } from "react-icons/hi2";
+import { FaCrown } from "react-icons/fa";
+import { Badge } from "flowbite-react";
 
 const FeaturedClass = ({ classData }) => {
-    const {image, name, description, numberOfBookings} = classData;
-    
-  return (
-    <div className="block rounded-xl p-4 shadow-md shadow-gray-100">
-      <img
-        alt=""
-        src={image}
-        className="h-56 w-full rounded-lg object-cover"
-      />
+  const { image, name, description, numberOfBookings } = classData;
 
-      <div className="mt-4 space-y-2">
-        <h3 className="font-display text-2xl tracking-wide text-dark">{name}</h3>
+  return (
+    <div className="block rounded-xl p-5 shadow-sm border shadow-gray-100">
+      <div className="relative">
+        <img
+          alt=""
+          src={image}
+          className="h-56 w-full rounded-lg object-cover"
+        />
+        <span className="absolute top-4 right-4 text-amber-400 text-xl backdrop-blur-md bg-white/20 p-1 rounded-full">
+          <FaCrown />
+        </span>
+      </div>
+
+      <p className="w-max mt-4 -ml-1">
+        <Badge color="lime" s icon={HiOutlineUsers}>Bookings: {numberOfBookings}</Badge>
+      </p>
+
+      <div className="mt-2 space-y-2">
+        <h3 className="font-display text-2xl tracking-wide text-dark">
+          {name}
+        </h3>
 
         <p className="text-light">{description}</p>
 
@@ -90,8 +104,6 @@ const FeaturedClass = ({ classData }) => {
     </div>
   );
 };
-
-
 
 FeaturedClass.propTypes = {
   classData: PropTypes.object,
