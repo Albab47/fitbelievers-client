@@ -4,7 +4,7 @@ import Logo from "../Logo/Logo";
 
 const Loader = ({ width = 100, height = 5 }) => {
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex flex-col gap-4 justify-center items-center">
       <Logo />
       <BarLoader
         color="#a3e635"

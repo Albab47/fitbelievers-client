@@ -20,7 +20,7 @@ const FeaturedClass = ({ classData }) => {
       </div>
 
       <p className="w-max mt-4 -ml-1">
-        <Badge color="lime" s icon={HiOutlineUsers}>Bookings: {numberOfBookings}</Badge>
+        <Badge color="lime" icon={HiOutlineUsers}>Bookings: {numberOfBookings}</Badge>
       </p>
 
       <div className="mt-2 space-y-2">

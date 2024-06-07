@@ -4,18 +4,18 @@ import useAuth from "../hooks/useAuth";
 import Loader from "../components/Shared/Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
-  const { currentUser, loading } = useAuth();
+  const { user, loading } = useAuth();
   const location = useLocation()
 
   if(loading) {
     return <Loader />
   }
 
-  if (currentUser) {
+  if (user) {
     return children;
   }
 
-  return <Navigate to={'/login'} state={{from: location}} replace></Navigate>;
+  return <Navigate to={'/login'} state={{from: location}} replace={true}></Navigate>;
 };
 
 PrivateRoute.propTypes = {

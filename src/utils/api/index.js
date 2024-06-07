@@ -2,7 +2,6 @@ import axios from "axios";
 
 // upload image to imageBB
 const uploadImage = async (image) => {
-  console.log(image);
   const formData = new FormData();
   formData.append("image", image);
 

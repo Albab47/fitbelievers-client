@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const BeATrainer = () => {
   return (
@@ -20,12 +21,12 @@ const BeATrainer = () => {
           </p>
 
           <div className="mt-4 sm:mt-8">
-            <a
-              href="#"
+            <Link
+              to={`/be-a-trainer`}
               className="inline-block rounded-full bg-primary px-12 py-3 text-sm font-medium text-dark drop-shadow-md transition hover:scale-105 hover:bg-lime-500 focus:outline-none focus:ring focus:ring-lime-300"
             >
               Become a Trainer
-            </a>
+            </Link>
           </div>
         </div>
       </div>
