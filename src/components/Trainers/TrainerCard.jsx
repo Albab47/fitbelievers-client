@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Badge } from "flowbite-react";
+import { Badge, Button } from "flowbite-react";
 import { Link } from "react-router-dom";
 import TrainerSlotItem from "./TrainerSlotItem";
 
@@ -14,12 +14,10 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
     specializations,
   } = trainer;
 
-  console.log(availableSlots);
-
   return (
     <Link
       to={`/trainers/${_id}`}
-      className="flex flex-col rounded-xl p-5 shadow-sm border border-primary/30 hover:scale-105 hover:border-primary hover:shadow-lime-100 transition-all duration-300"
+      className="flex flex-col rounded-xl p-5 shadow-sm border border-primary/30 hover:scale-105 hover:border-primary hover:shadow-lime-100 transition-all ease-in-out duration-300"
     >
       <div className="relative flex justify-center ">
         <img
@@ -51,7 +49,6 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
         </ul>
       </div>
 
-
       <div className="space-y-2 mt-4">
         <h4 className="font-semibold">Expertise in:</h4>
         <p className="flex flex-wrap gap-2">
@@ -62,6 +59,18 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
           ))}
         </p>
       </div>
+
+      {!isHome && (
+        <Link to={`/trainers/${_id}`} className="mt-6">
+          <Button
+            gradientMonochrome="lime"
+            fullSized
+            className="shrink-0 rounded-xl"
+          >
+            Know more
+          </Button>
+        </Link>
+      )}
     </Link>
   );
 };
