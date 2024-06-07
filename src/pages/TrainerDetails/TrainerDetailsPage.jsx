@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import { Badge, Button } from "flowbite-react";
+import BeATrainer from "../../components/TrainerDetails/BeATrainer";
 
 const TrainerDetailsPage = () => {
   const { id } = useParams();
@@ -106,25 +107,28 @@ const TrainerDetailsPage = () => {
 
           <ul>
             {availableSlots.map((item, i) => (
-              <li key={i} className="flex items-center gap-6 mb-4">
+              <li key={i} className="flex flex-col md:flex-row md:items-center gap-6 mb-4">
                 <span className="font-semibold w-20">{item.day}:</span>
                 <div className="flex flex-wrap gap-3">
                   {item.slots.map((slot) => (
-                    <button
+                    <Link
                       key={slot}
-                      className="grid rounded-lg transition-colors py-1.5 px-4 bg-primary/30 hover:bg-primary/40 text-dark "
+                      className="text-center flex flex-col rounded-lg transition-colors py-1.5 px-4 bg-primary/30 hover:bg-primary/40 text-dark "
                     >
                       <span className="font-medium text-lime-600">
                         {slot.name}
                       </span>
-                      <span className="text-sm">{slot.time}</span>
-                    </button>
+                      <span className="text-sm text-center">{slot.time}</span>
+                    </Link>
                   ))}
                 </div>
               </li>
             ))}
           </ul>
         </section>
+
+        {/* Be a trainer CTA */}
+        <BeATrainer />
       </div>
     </section>
   );

@@ -13,3 +13,7 @@ body {
 .mySwiper {
   @apply my-8 py-8 xl:my-12;
 }
+
+.trainerCTABg {
+  background-image: url('./assets/trainerCTA.jpg');
+}
