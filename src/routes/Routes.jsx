@@ -9,6 +9,8 @@ import TrainerDetailsPage from "../pages/TrainerDetails/TrainerDetailsPage";
 import BeATrainerPage from "../pages/BeATrainerPage/BeATrainerPage";
 import PrivateRoute from "./PrivateRoute";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
+import AddSlot from "../pages/Dashboard/Tainer/AddSlot";
+import TrainersRoute from "./TrainersRoute";
 
 const router = createBrowserRouter([
   {
@@ -43,11 +45,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
       {
         path: "applied-trainers",
         element: <AppliedTrainers />,
+      },
+      {
+        path: "add-slot",
+        element: <TrainersRoute><AddSlot /></TrainersRoute>,
       },
     ]
   },

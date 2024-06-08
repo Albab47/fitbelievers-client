@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AppliedTrainerTable from "../../../components/Dashboard/Tables/AppliedTrainerTable";
+import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 
 const AppliedTrainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -13,6 +14,8 @@ const AppliedTrainers = () => {
       return data;
     },
   });
+
+  if(isLoading) return <SecondaryLoader />
 
   return (
     <div className="container px-4">

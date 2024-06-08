@@ -1,5 +1,6 @@
 import { BiDetail } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const AppliedTrainerTable = ({ trainers }) => {
   console.log(trainers);
@@ -112,7 +113,10 @@ const AppliedTrainerTable = ({ trainers }) => {
                       </td>
 
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <Link to={`/dashboard/applied-trainers/${trainer._id}`} className="flex items-center gap-x-6">
+                        <Link
+                          to={`/dashboard/applied-trainers/${trainer._id}`}
+                          className="flex items-center gap-x-6"
+                        >
                           <button className="border bg-gray-100 px-3 py-1 rounded-lg flex gap-1 items-center text-gray-500 transition-colors duration-200 dark:hover:text-dark dark:text-gray-300 hover:bg-primary focus:outline-none">
                             <BiDetail />
                             Details
@@ -221,6 +225,10 @@ const AppliedTrainerTable = ({ trainers }) => {
       </div> */}
     </section>
   );
+};
+
+AppliedTrainerTable.propTypes = {
+  trainers: PropTypes.array,
 };
 
 export default AppliedTrainerTable;

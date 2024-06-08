@@ -9,6 +9,7 @@ const MenuItem = ({ label, address, icon: Icon }) => {
   return (
     <NavLink
       to={address}
+      end
       className={({ isActive }) =>
         `relative flex items-center cursor-pointer px-4 py-2 mt-5 ${
           isActive ? "text-primary bg-primary/10" : "text-gray-300"

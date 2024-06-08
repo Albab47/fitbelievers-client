@@ -1,20 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { IoLogInOutline } from "react-icons/io5";
-import {
-  Avatar,
-  Dropdown,
-  DropdownDivider,
-  DropdownHeader,
-  DropdownItem,
-} from "flowbite-react";
 import { useState } from "react";
 import NavbarDrawer from "../../Drawer/NavbarDrawer";
 import useAuth from "../../../hooks/useAuth";
-import { TbLogout2 } from "react-icons/tb";
-import { FaUser } from "react-icons/fa6";
-import { RxDashboard } from "react-icons/rx";
-import { IoSettingsOutline } from "react-icons/io5";
 import UserDropdown from "../UserDropdown/UserDropdown";
 
 const Header = () => {
