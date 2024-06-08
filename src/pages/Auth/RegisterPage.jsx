@@ -279,7 +279,7 @@ const RegisterPage = () => {
               </div>
 
               <div className="col-span-6">
-                <Button disabled={loading} gradientMonochrome="lime" fullSized className="shrink-0 rounded-xl">
+                <Button type="submit" disabled={loading} gradientMonochrome="lime" fullSized className="shrink-0 rounded-xl">
                   Create account
                 </Button>
               </div>

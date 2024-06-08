@@ -15,9 +15,9 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
   } = trainer;
 
   return (
-    <Link
+    <div
       to={`/trainers/${_id}`}
-      className="flex flex-col rounded-xl p-5 shadow-sm border border-primary/30 hover:scale-105 hover:border-primary hover:shadow-lime-100 transition-all ease-in-out duration-300"
+      className="flex flex-col rounded-xl p-5 shadow-sm border border-primary/30 hover:shadow-lime-100 transition-all ease-in-out duration-300"
     >
       <div className="relative flex justify-center ">
         <img
@@ -71,7 +71,7 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
           </Button>
         </Link>
       )}
-    </Link>
+    </div>
   );
 };
 

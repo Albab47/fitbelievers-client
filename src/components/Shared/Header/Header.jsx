@@ -15,6 +15,7 @@ import { TbLogout2 } from "react-icons/tb";
 import { FaUser } from "react-icons/fa6";
 import { RxDashboard } from "react-icons/rx";
 import { IoSettingsOutline } from "react-icons/io5";
+import UserDropdown from "../UserDropdown/UserDropdown";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -81,24 +82,7 @@ const Header = () => {
           <div className="flex items-center gap-4">
             <div>
               {user ? (
-                <Dropdown
-                  arrowIcon={false}
-                  inline
-                  label={<Avatar alt="User menu" img={user.photoURL} rounded />}
-                >
-                  <DropdownHeader>
-                    <span className="block text-sm">{user?.displayName}</span>
-                    <span className="block truncate text-sm font-medium">
-                      {user?.email}
-                    </span>
-                  </DropdownHeader>
-                  <Link to={`/dashboard`}>
-                    <DropdownItem icon={RxDashboard}>Dashboard</DropdownItem>
-                  </Link>
-                  <DropdownItem icon={IoSettingsOutline}>Profile</DropdownItem>
-                  <DropdownDivider />
-                  <DropdownItem onClick={logOut} icon={TbLogout2}>Logout</DropdownItem>
-                </Dropdown>
+                <UserDropdown user={user} logOut={logOut} />
               ) : (
                 <Link
                   className="flex items-center rounded-full bg-primary text-dark px-5 py-2 text-sm font-semibold transition hover:scale-105 hover:shadow-xl focus:outline-none focus:ring active:bg-lime-500"

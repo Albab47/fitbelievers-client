@@ -8,6 +8,7 @@ import TrainersPage from "../pages/Trainers/TrainersPage";
 import TrainerDetailsPage from "../pages/TrainerDetails/TrainerDetailsPage";
 import BeATrainerPage from "../pages/BeATrainerPage/BeATrainerPage";
 import PrivateRoute from "./PrivateRoute";
+import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout />,
+    children: [
+      {
+        path: "applied-trainers",
+        element: <AppliedTrainers />,
+      },
+    ]
   },
 
 ]);
