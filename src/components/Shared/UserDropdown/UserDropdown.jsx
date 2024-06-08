@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"; 
 import {
     Avatar,
   Dropdown,
@@ -15,7 +16,7 @@ const UserDropdown = ({ user, logOut }) => {
     <Dropdown
       arrowIcon={false}
       inline
-      label={<Avatar alt="User menu" img={user.photoURL} rounded />}
+      label={<Avatar alt="User menu" img={user?.photoURL} rounded />}
     >
       <DropdownHeader>
         <span className="block text-sm">{user?.displayName}</span>
@@ -33,6 +34,12 @@ const UserDropdown = ({ user, logOut }) => {
       </DropdownItem>
     </Dropdown>
   );
+};
+
+
+UserDropdown.propTypes = {
+  user: PropTypes.object,
+  logOut: PropTypes.func,
 };
 
 export default UserDropdown;
