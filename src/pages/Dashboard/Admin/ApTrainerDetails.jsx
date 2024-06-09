@@ -33,6 +33,10 @@ const ApTrainerDetails = () => {
   } = trainer;
 
   const handleAccept = async() => {
+    console.log(trainer._id);
+    delete trainer._id;
+    console.log(trainer);
+    
     try {
       const { data } = await axiosSecure.post("/trainers", trainer);
       console.log(data);

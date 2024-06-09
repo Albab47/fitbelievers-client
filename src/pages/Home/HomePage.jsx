@@ -5,10 +5,9 @@ import FeaturesClasses from "../../components/Home/FeaturedClasses/FeaturesClass
 import Features from "../../components/Home/Features/Features";
 import Testimonials from "../../components/Home/Testimonials/Testimonials";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
-
 import useTrainers from "../../hooks/useTrainers";
 import Team from "../../components/Home/Team/Team";
-import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
+import Loader from "../../components/Shared/Loader/Loader";
 
 const HomePage = () => {
   const axiosCommon = useAxiosCommon();
@@ -21,7 +20,7 @@ const HomePage = () => {
   });
   const { trainers, isLoading: isTrainersLoading } = useTrainers("team", 3);
 
-  if (isLoading || isTrainersLoading) return <SecondaryLoader size={70} />
+  if (isLoading || isTrainersLoading) return <Loader />
 
   return (
     <div>

@@ -12,7 +12,7 @@ import ErrorMsg from "../../components/Shared/ErrorMsg/ErrorMsg";
 import { Button } from "flowbite-react";
 
 const LoginPage = () => {
-  const { signIn, loginWithGoogle, loading } = useAuth();
+  const { signIn, loginWithGoogle, loading, setLoading } = useAuth();
   const { showPassword, handleShowPassword } = useShowPassword();
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,6 +38,7 @@ const LoginPage = () => {
       if (errorCode === "auth/invalid-credential") {
         toast.error("Email and password do not match. Please try again.");
       }
+      setLoading(false)
     }
   };
 

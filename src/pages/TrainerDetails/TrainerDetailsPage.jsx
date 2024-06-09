@@ -20,9 +20,8 @@ const TrainerDetailsPage = () => {
     name,
     photo,
     background,
-    specializations,
+    expertise,
     qualifications,
-    availableSlots,
     experience,
   } = trainer;
 
@@ -52,7 +51,8 @@ const TrainerDetailsPage = () => {
               <h2 className="text-3xl font-display text-dark dark:text-white mb-2">
                 {name}
               </h2>
-              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+              <p className="text-sm text-gray-600">{expertise} trainer</p>
+              <p className="text-gray-600 dark:text-gray-300 text-sm my-4">
                 {background}
               </p>
               <div className="flex mb-4">
@@ -64,24 +64,6 @@ const TrainerDetailsPage = () => {
                     {" "}
                     {experience} years
                   </span>
-                </div>
-              </div>
-
-              <div className="mb-4">
-                <span className="font-bold text-gray-700 dark:text-gray-300">
-                  Expertise:
-                </span>
-                <div className="flex flex-wrap gap-3 items-center mt-2">
-                  {specializations.map((item, i) => (
-                    <Badge
-                      key={i}
-                      className="rounded-full"
-                      color="lime"
-                      size="sm"
-                    >
-                      {item}
-                    </Badge>
-                  ))}
                 </div>
               </div>
 
@@ -102,7 +84,7 @@ const TrainerDetailsPage = () => {
         </section>
 
         {/* available slots */}
-        <section className="max-w-6xl my-8 shadow-sm mx-auto p-5 sm:p-6 rounded-xl bg-white dark:bg-gray-800">
+        {/* <section className="max-w-6xl my-8 shadow-sm mx-auto p-5 sm:p-6 rounded-xl bg-white dark:bg-gray-800">
           <h1 className="text-3xl mb-6 font-display text-center">Available Slots</h1>
 
           <ul>
@@ -125,7 +107,7 @@ const TrainerDetailsPage = () => {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
 
         {/* Be a trainer CTA */}
         <BeATrainer />
