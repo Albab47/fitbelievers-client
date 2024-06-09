@@ -23,7 +23,7 @@ const Sidebar = () => {
     <aside
       className={`bg-gray-900 relative flex flex-col h-screen px-4 py-8 shadow-2xl border-r dark:bg-gray-900 dark:border-gray-700`}
     >
-      <Logo expended={expended} />
+      <Logo expended={expended} blackLogo={false} />
 
       {/* sidebar toggle */}
       <button

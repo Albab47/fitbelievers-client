@@ -285,7 +285,7 @@ const BeATrainerPage = () => {
                 </div>
 
                 {/* Available time */}
-                <div className="md:col-span-2 space-y-2">
+                <div className="md:col-span-2">
                   <label
                     className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
                     htmlFor="availableTime"

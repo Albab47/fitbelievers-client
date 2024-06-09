@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AppliedTrainerTable = ({ trainers }) => {
-  console.log(trainers);
 
   return (
     <section className="container px-4 mx-auto">

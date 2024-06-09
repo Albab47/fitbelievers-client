@@ -13,7 +13,7 @@ const DashboardHeader = () => {
     <header className="bg-white">
       <div className="container">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex-1 flex md:invisible items-center gap-6">
+          <div className="flex-1 flex invisible items-center gap-6">
             <FaBars  size={22} className="text-gray-700" />
             <Logo blackLogo={true} />
           </div>

@@ -11,6 +11,9 @@ import PrivateRoute from "./PrivateRoute";
 import AppliedTrainers from "../pages/Dashboard/Admin/AppliedTrainers";
 import AddSlot from "../pages/Dashboard/Tainer/AddSlot";
 import TrainersRoute from "./TrainersRoute";
+import ApTrainerDetails from "../pages/Dashboard/Admin/ApTrainerDetails";
+import AdminRoute from "./AdminRoute";
+import AddClass from "../pages/Dashboard/Admin/AddClass";
 
 const router = createBrowserRouter([
   {
@@ -47,9 +50,18 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
+      // Admin route
       {
         path: "applied-trainers",
-        element: <AppliedTrainers />,
+        element: <AdminRoute><AppliedTrainers /></AdminRoute>,
+      },
+      {
+        path: "applied-trainers/:id",
+        element: <AdminRoute><ApTrainerDetails /></AdminRoute>,
+      },
+      {
+        path: "add-class",
+        element: <AdminRoute><AddClass /></AdminRoute>,
       },
       {
         path: "add-slot",

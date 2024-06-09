@@ -8,10 +8,11 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
     _id,
     name,
     photo,
+    expertise,
     background,
     experience,
     availableSlots,
-    specializations,
+    skills,
   } = trainer;
 
   return (
@@ -28,13 +29,16 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
       </div>
 
       <div className="mt-4 space-y-2 flex-grow">
-        <h3 className="font-display text-2xl tracking-wide text-dark">
-          {name}
-        </h3>
+        <div className="text-center">
+          <h3 className="font-display text-2xl tracking-wide text-dark">
+            {name}
+          </h3>
+          <p className="text-sm">{expertise}</p>
+        </div>
         {isHome ? (
           <p className="text-pretty text-sm text-gray-500">{background}</p>
         ) : (
-          <p className="text-sm">Experience: {experience} years</p>
+          <p className="text-sm">Experience: {experience}</p>
         )}
       </div>
 
@@ -49,16 +53,16 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
         </ul>
       </div>
 
-      <div className="space-y-2 mt-4">
-        <h4 className="font-semibold">Expertise in:</h4>
+      {/* <div className="space-y-2 mt-4">
+        <h4 className="font-semibold">skill in:</h4>
         <p className="flex flex-wrap gap-2">
-          {specializations?.map((item, idx) => (
+          {skills?.map((item, idx) => (
             <Badge key={idx} color="lime">
               {item}
             </Badge>
           ))}
         </p>
-      </div>
+      </div> */}
 
       {!isHome && (
         <Link to={`/trainers/${_id}`} className="mt-6">
