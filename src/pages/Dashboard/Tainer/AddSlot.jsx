@@ -92,6 +92,7 @@ const AddSlot = () => {
   const onAddSlot = async (slotData) => {
     slotData.trainer.photo = user?.photoURL;
     slotData.trainer.id = _id;
+    console.log(slotData);
     setLoading(true);
 
     try {

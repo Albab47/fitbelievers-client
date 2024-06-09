@@ -3,7 +3,7 @@ import { HiOutlineUsers } from "react-icons/hi2";
 import { FaCrown } from "react-icons/fa";
 import { Badge } from "flowbite-react";
 
-const ClassCard = ({ classData }) => {
+const FeaturedClass = ({ classData }) => {
   const { image, name, description, numberOfBookings } = classData;
 
   return (
@@ -105,8 +105,8 @@ const ClassCard = ({ classData }) => {
   );
 };
 
-ClassCard.propTypes = {
+FeaturedClass.propTypes = {
   classData: PropTypes.object,
 };
 
-export default ClassCard;
+export default FeaturedClass;

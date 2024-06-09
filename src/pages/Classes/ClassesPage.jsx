@@ -1,12 +1,12 @@
 import PageHeader from "../../components/Shared/PageHeader/PageHeader";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
-import ClassCard from "../../components/Home/FeaturedClasses/FeaturedClass";
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa6";
 import { useState } from "react";
 import useDataCount from "../../hooks/useDataCount";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
+import ClassCard from "../../components/Shared/ClassCard/ClassCard";
 
 const ClassesPage = () => {
   const axiosCommon = useAxiosCommon();

@@ -72,7 +72,7 @@ const TrainerDetailsPage = () => {
                   Qualification:
                 </span>
                 <ul className="list-disc list-inside pl-2">
-                  {qualifications.map((item, i) => (
+                  {qualifications.split(",").map((item, i) => (
                     <li key={i} className="pt-1">
                       {item}
                     </li>
