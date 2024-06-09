@@ -1,5 +1,5 @@
 import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
-import FeaturedClass from "./FeaturedClass";
+import ClassCard from "./FeaturedClass";
 
 const FeaturesClasses = ({classes}) => {
   
@@ -11,7 +11,7 @@ const FeaturesClasses = ({classes}) => {
         {/* grid container */}
         <div className="py-8 md:py-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {classes?.map((classData) => (
-            <FeaturedClass key={classData._id} classData={classData} />
+            <ClassCard key={classData._id} classData={classData} />
           ))}
         </div>
       </div>

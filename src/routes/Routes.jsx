@@ -15,6 +15,7 @@ import ApTrainerDetails from "../pages/Dashboard/Admin/ApTrainerDetails";
 import AdminRoute from "./AdminRoute";
 import AddClass from "../pages/Dashboard/Admin/AddClass";
 import Classes from "../pages/Classes/ClassesPage";
+import ClassesPage from "../pages/Classes/ClassesPage";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/classes",
-        element: <Classes />,
+        element: <ClassesPage />,
       },
       {
         path: "/trainers",
