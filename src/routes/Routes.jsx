@@ -63,6 +63,7 @@ const router = createBrowserRouter([
         path: "add-class",
         element: <AdminRoute><AddClass /></AdminRoute>,
       },
+      // Trainers route
       {
         path: "add-slot",
         element: <TrainersRoute><AddSlot /></TrainersRoute>,
