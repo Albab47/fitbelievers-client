@@ -18,6 +18,7 @@ import Classes from "../pages/Classes/ClassesPage";
 import ClassesPage from "../pages/Classes/ClassesPage";
 import NewsletterSubscribers from "../pages/Dashboard/Admin/NewsletterSubscribers";
 import AllTrainers from "../pages/Dashboard/Admin/AllTrainers";
+import ManageSlots from "../pages/Dashboard/Tainer/ManageSlots";
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: "add-slot",
         element: <TrainersRoute><AddSlot /></TrainersRoute>,
+      },
+      {
+        path: "manage-slots",
+        element: <TrainersRoute><ManageSlots /></TrainersRoute>,
       },
     ]
   },
