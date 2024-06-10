@@ -29,7 +29,7 @@ const AdminMenu = () => {
         icon={MdPeopleAlt}
       />
       <MenuItem
-        address="/dashboard/newsletter-subscribers"
+        address="/dashboard/subscribers"
         label="Newsletter Subscribers"
         icon={MdOutlineMarkEmailRead}
       />
