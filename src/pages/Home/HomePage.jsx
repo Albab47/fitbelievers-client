@@ -8,6 +8,7 @@ import useAxiosCommon from "../../hooks/useAxiosCommon";
 import useTrainers from "../../hooks/useTrainers";
 import Team from "../../components/Home/Team/Team";
 import Loader from "../../components/Shared/Loader/Loader";
+import Newsletter from "../../components/Home/Newsletter/Newsletter";
 
 const HomePage = () => {
   const axiosCommon = useAxiosCommon();
@@ -30,6 +31,7 @@ const HomePage = () => {
       <Team trainers={trainers} />
       <AboutUs />
       <Testimonials />
+      <Newsletter />
     </div>
   );
 };
