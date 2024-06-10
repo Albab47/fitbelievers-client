@@ -19,6 +19,8 @@ import ClassesPage from "../pages/Classes/ClassesPage";
 import NewsletterSubscribers from "../pages/Dashboard/Admin/NewsletterSubscribers";
 import AllTrainers from "../pages/Dashboard/Admin/AllTrainers";
 import ManageSlots from "../pages/Dashboard/Tainer/ManageSlots";
+import TrainerBookingPage from "../pages/TrainerBookingPage/TrainerBookingPage";
+import PaymentPage from "../pages/PaymentPage/PaymentPage";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
       {
         path: "/trainers/:id",
         element: <TrainerDetailsPage />,
+      },
+      {
+        path: "/trainer-booking/:id",
+        element: <PrivateRoute><TrainerBookingPage /></PrivateRoute>,
+      },
+      {
+        path: "/payment",
+        element: <PrivateRoute><PaymentPage /></PrivateRoute>,
       },
       {
         path: "/be-a-trainer",

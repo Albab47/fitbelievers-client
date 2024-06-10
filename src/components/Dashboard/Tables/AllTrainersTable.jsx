@@ -12,7 +12,7 @@ const AllTrainersTable = ({ trainers, refetch }) => {
   const handleDeleteTrainer = async (id) => {
     console.log(id);
     setLoading(true)
-
+    
     try {
       const { data } = await axiosSecure.delete(`/trainers/${id}`);
       console.log(data);

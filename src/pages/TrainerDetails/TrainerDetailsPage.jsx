@@ -4,6 +4,9 @@ import { useQuery } from "@tanstack/react-query";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import { Badge, Button } from "flowbite-react";
 import BeATrainer from "../../components/TrainerDetails/BeATrainer";
+import { FaRegClock } from "react-icons/fa6";
+import { LuCalendarDays } from "react-icons/lu";
+import { IoIosFitness } from "react-icons/io";
 
 const TrainerDetailsPage = () => {
   const { id } = useParams();
@@ -22,6 +25,7 @@ const TrainerDetailsPage = () => {
     background,
     expertise,
     qualifications,
+    availableSlots,
     experience,
   } = trainer;
 
@@ -84,30 +88,33 @@ const TrainerDetailsPage = () => {
         </section>
 
         {/* available slots */}
-        {/* <section className="max-w-6xl my-8 shadow-sm mx-auto p-5 sm:p-6 rounded-xl bg-white dark:bg-gray-800">
-          <h1 className="text-3xl mb-6 font-display text-center">Available Slots</h1>
+        <section className="max-w-6xl my-8 shadow-sm mx-auto p-5 sm:p-6 rounded-xl bg-white dark:bg-gray-800">
+          <h1 className="text-3xl mb-6 font-display text-center">
+            Available Slots
+          </h1>
 
-          <ul>
-            {availableSlots.map((item, i) => (
-              <li key={i} className="flex flex-col md:flex-row md:items-center gap-6 mb-4">
-                <span className="font-semibold w-20">{item.day}:</span>
-                <div className="flex flex-wrap gap-3">
-                  {item.slots.map((slot) => (
-                    <Link
-                      key={slot}
-                      className="text-center flex flex-col rounded-lg transition-colors py-1.5 px-4 bg-primary/30 hover:bg-primary/40 text-dark "
-                    >
-                      <span className="font-medium text-lime-600">
-                        {slot.name}
-                      </span>
-                      <span className="text-sm text-center">{slot.time}</span>
-                    </Link>
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section> */}
+          {availableSlots ? (
+            <ul className="space-y-3">
+              {availableSlots.map((slot, i) => (
+                <li key={i} className="">
+                  <Link to={`/trainer-booking/${slot.slotId}`}>
+                    <Button className="text-left" color="lime" fullSized>
+                      {slot.slotName}:{" "}
+                      <FaRegClock className="mt-0.5 ml-4 mr-2 size-4" />{" "}
+                      {slot.slotTime}.{" "}
+                      <LuCalendarDays className="mt-0.5 ml-4 mr-2 size-4" />{" "}
+                      {slot.slotDays.map((d) => d + ", ")}.{" "}
+                      <IoIosFitness className="mt-0.5 ml-4 mr-2 size-5" />{" "}
+                      {slot.classesIncludes.map((c) => c + ", ")}.{" "}
+                    </Button>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 text-center py-6">No Slot Available</p>
+          )}
+        </section>
 
         {/* Be a trainer CTA */}
         <BeATrainer />

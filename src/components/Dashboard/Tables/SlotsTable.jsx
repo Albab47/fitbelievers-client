@@ -15,7 +15,7 @@ const SlotsTable = ({ slots, refetch }) => {
     try {
       const { data } = await axiosSecure.delete(`/slots/${id}`);
       console.log(data);
-      if (data.deletedCount > 0) {
+      if (data.modifiedCount > 0) {
         toast.success("Slot Deleted Successfully");
         refetch();
       }
@@ -127,7 +127,7 @@ const SlotsTable = ({ slots, refetch }) => {
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="flex flex-wrap items-center px-3 py-1 rounded-lg gap-x-2 bg-lime-100/60 dark:bg-gray-800">
                           <h2 className="text-sm font-normal text-lime-500">
-                            {slot?.bookedBy}
+                            {/* {slot?.bookedBy} */}no one booked
                           </h2>
                         </div>
                       </td>
