@@ -6,8 +6,8 @@ import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import SlotsTable from "../../../components/Dashboard/Tables/SlotsTable";
 
 const ManageSlots = () => {
-    const axiosSecure = useAxiosSecure();
-    const {user} = useAuth()
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["slots"],
@@ -17,7 +17,7 @@ const ManageSlots = () => {
     },
   });
 
-  if(isLoading) return <SecondaryLoader />
+  if (isLoading) return <SecondaryLoader />;
 
   return (
     <div className="container px-4">

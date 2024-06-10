@@ -101,7 +101,7 @@ const AddSlot = () => {
       if (data.insertedId) {
         toast.success("Slot Added Successfully");
         reset();
-        navigate("/");
+        navigate("/dashboard/manage-slots");
         setLoading(false);
       }
     } catch (err) {

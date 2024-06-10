@@ -14,6 +14,8 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
     skills,
   } = trainer;
 
+  console.log(availableSlots);
+
   return (
     <div
       to={`/trainers/${_id}`}
@@ -42,12 +44,19 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
       </div>
 
       {/* Available slots */}
-      <div className="my-4">
-        <h4 className="font-semibold">Available slots:</h4>
-        <ul className="list-inside list-disc pl-2">
-          {/* slots list */}
-        </ul>
-      </div>
+      {availableSlots && (
+        <div className="my-4">
+          <h4 className="font-semibold mb-1.5">Available slots:</h4>
+          <ul className="list-inside list-disc pl-2 text-gray-600">
+            {/* slots list */}
+            {availableSlots.map((slot, i) => (
+              <li key={i} className="mb-1">
+                {slot.slotName}: {slot.slotTime}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* <div className="space-y-2 mt-4">
         <h4 className="font-semibold">skill in:</h4>
