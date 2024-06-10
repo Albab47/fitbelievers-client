@@ -17,6 +17,7 @@ import AddClass from "../pages/Dashboard/Admin/AddClass";
 import Classes from "../pages/Classes/ClassesPage";
 import ClassesPage from "../pages/Classes/ClassesPage";
 import NewsletterSubscribers from "../pages/Dashboard/Admin/NewsletterSubscribers";
+import AllTrainers from "../pages/Dashboard/Admin/AllTrainers";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "add-class",
         element: <AdminRoute><AddClass /></AdminRoute>,
+      },
+      {
+        path: "all-trainers",
+        element: <AdminRoute><AllTrainers /></AdminRoute>,
       },
       {
         path: "subscribers",

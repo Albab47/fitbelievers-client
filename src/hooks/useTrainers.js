@@ -4,7 +4,7 @@ import useAxiosCommon from "./useAxiosCommon";
 const useTrainers = (sort, limit) => {
   const axiosCommon = useAxiosCommon();
 
-  const { data: trainers, isLoading } = useQuery({
+  const { data: trainers, isLoading, refetch } = useQuery({
     queryKey: ["trainers"],
     queryFn: async () => {
       const { data } = await axiosCommon(`/trainers?sort=${sort}&limit=${limit}`);
@@ -12,7 +12,7 @@ const useTrainers = (sort, limit) => {
     },
   });
 
-  return {trainers, isLoading};
+  return {trainers, isLoading, refetch};
 };
 
 export default useTrainers;

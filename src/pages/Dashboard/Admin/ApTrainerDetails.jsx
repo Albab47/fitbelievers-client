@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 const ApTrainerDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { data: trainer = {}, isLoading } = useQuery({
     queryKey: ["appliedTrainer", id],
@@ -32,16 +32,16 @@ const ApTrainerDetails = () => {
     background,
   } = trainer;
 
-  const handleAccept = async() => {
+  const handleAccept = async () => {
     console.log(trainer._id);
     delete trainer._id;
     console.log(trainer);
-    
+
     try {
       const { data } = await axiosSecure.post("/trainers", trainer);
       console.log(data);
-      toast.success("Trainer Accepted Successfully")
-      navigate('/dashboard/applied-trainers')
+      toast.success("Trainer Accepted Successfully");
+      navigate("/dashboard/all-trainers");
     } catch (err) {
       console.log(err);
     }
@@ -79,13 +79,15 @@ const ApTrainerDetails = () => {
 
         <div className="mt-6">
           <span className="font-semibold text-light">Skills:</span>
-          <div className="mt-1.5 flex flex-wrap gap-2">
-            {skills?.map((skill, i) => (
-              <Badge key={i} color={"lime"} size="sm">
-                {skill}
-              </Badge>
-            ))}
-          </div>
+          {trainer.skills && (
+            <div className="mt-1.5 flex flex-wrap gap-2">
+              {skills?.map((skill, i) => (
+                <Badge key={i} color={"lime"} size="sm">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="mt-6 flex gap-12">

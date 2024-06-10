@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
-import { Badge, Button } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
-import TrainerSlotItem from "./TrainerSlotItem";
 
 const TrainerCard = ({ trainer = {}, isHome = false }) => {
   const {
@@ -46,10 +45,7 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
       <div className="my-4">
         <h4 className="font-semibold">Available slots:</h4>
         <ul className="list-inside list-disc pl-2">
-          {availableSlots?.map((item, i) => (
-            // <li key={i}>{item.day.slice(0, 3)}</li>
-            <TrainerSlotItem key={i} data={item} />
-          ))}
+          {/* slots list */}
         </ul>
       </div>
 

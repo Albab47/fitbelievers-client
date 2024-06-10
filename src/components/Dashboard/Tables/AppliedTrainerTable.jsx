@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const AppliedTrainerTable = ({ trainers }) => {
+  console.log(trainers);
+
   return (
     <section className="container px-4 mx-auto">
       {/* table heading */}
@@ -98,16 +100,18 @@ const AppliedTrainerTable = ({ trainers }) => {
                       </td>
 
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          {trainer.skills.map((skill, i) => (
-                            <p
-                              key={i}
-                              className="px-3 py-1 text-xs text-lime-500 rounded-full dark:bg-gray-800 bg-lime-100/60"
-                            >
-                              {skill}
-                            </p>
-                          ))}
-                        </div>
+                        {trainer.skills && (
+                          <div className="flex items-center gap-x-2">
+                            {trainer?.skills?.map((skill, i) => (
+                              <p
+                                key={i}
+                                className="px-3 py-1 text-xs text-lime-500 rounded-full dark:bg-gray-800 bg-lime-100/60"
+                              >
+                                {skill}
+                              </p>
+                            ))}
+                          </div>
+                        )}
                       </td>
 
                       <td className="px-4 py-4 text-sm whitespace-nowrap">
