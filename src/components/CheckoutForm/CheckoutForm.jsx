@@ -4,6 +4,8 @@ import "./checkout.css";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { ImSpinner10 } from "react-icons/im";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ bookingInfo }) => {
   const stripe = useStripe();
@@ -12,6 +14,7 @@ const CheckoutForm = ({ bookingInfo }) => {
   const [clientSecret, setClientSecret] = useState("");
   const [processing, setProcessing] = useState(false);
   const [cardError, setCardError] = useState("");
+  const navigate = useNavigate()
 
   // Load client secret from server
   useEffect(() => {
@@ -24,8 +27,6 @@ const CheckoutForm = ({ bookingInfo }) => {
       getClientSecret({ price: bookingInfo?.price });
     }
   }, [bookingInfo?.price, axiosSecure]);
-
-  console.log(bookingInfo);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -87,13 +88,16 @@ const CheckoutForm = ({ bookingInfo }) => {
 
       try {
         const {data} = await axiosSecure.post('/bookings', bookingData);
-        console.log(data);
+        if(data.insertedId) {
+          toast.success("Payment Successful")
+          navigate("/")
+        }
       } catch (err) {
         console.log(err);
         toast.error(err.message);
       }
     }
-
+    setProcessing(false)
 
   };
 
@@ -117,11 +121,11 @@ const CheckoutForm = ({ bookingInfo }) => {
       />
       <div className="flex justify-end">
         <button
-          className="bg-primary mt-1 text-white font-semibold py-1 px-4 rounded-xl "
+          className="bg-primary mt-1  text-white font-semibold py-1 px-4 rounded-xl "
           type="submit"
-          disabled={!stripe}
+          disabled={!stripe || processing || !clientSecret}
         >
-          Pay
+          {processing ? <ImSpinner10 className="size-4 animate-spin" /> : "Confirm"}
         </button>
       </div>
     </form>
