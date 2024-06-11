@@ -2,39 +2,28 @@ import { useQuery } from "@tanstack/react-query";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
+// import toast from "react-hot-toast";
+// import { Navigate } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const PaymentPage = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-
-  const { data: booking, isLoading } = useQuery({
-    queryKey: ["booking", user?.email],
+  const { data: cart, isLoading } = useQuery({
+    queryKey: ["cart", user?.email],
     enabled: !!user.email,
     queryFn: async () => {
-      const { data } = await axiosSecure(`/bookings/${user?.email}`);
+      const { data } = await axiosSecure.get(`/carts/${user?.email}`);
       return data;
     },
   });
-  console.log(booking);
 
-  
-  const handlePayment = async () => {
-    
-    // console.log(paymentData);
-    // try {
-    //   const { data } = await axiosSecure.post("/payments", paymentData);
-    //   console.log(data);
-    //   if (data.insertedId) {
-    //     Navigate("/");
-    //     toast.success("Please Pay to Confirm booking");
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   toast.error(err.message);
-    // }
-  };
+  const cartInfo = {...cart}
+  console.log(cartInfo);
 
   if (isLoading) return <SecondaryLoader />;
 
@@ -49,37 +38,34 @@ const PaymentPage = () => {
         <div className="space-y-4">
           <p className="text-gray-600">
             <span className="font-medium text-gray-700">Trainer Name:</span>{" "}
-            {booking.trainerName}
+            {cart.trainerName}
           </p>
           <p className="text-gray-600">
             <span className="font-medium text-gray-700">Slot Name:</span>{" "}
-            {booking.slotName}
+            {cart.slotName}
           </p>
           <p className="text-gray-600">
             <span className="font-medium text-gray-700">Package Name:</span>{" "}
-            {booking.packageName}
+            {cart.packageName}
           </p>
           <p className="text-gray-600">
             <span className="font-medium text-gray-700">Price:</span>{" "}
-            {booking.price}
+            {cart.price}
           </p>
           <p className="text-gray-600">
             <span className="font-medium text-gray-700">Your Name:</span>{" "}
-            {booking.name}
+            {cart.name}
           </p>
           <p className="text-gray-600">
             <span className="font-medium text-gray-700">Your Email:</span>{" "}
-            {booking.email}
+            {cart.email}
           </p>
         </div>
 
-        <div className="flex justify-end">
-          <button
-            onClick={handlePayment}
-            className="bg-primary mt-3 text-white font-semibold py-1 px-4 rounded-xl "
-          >
-            Confirm
-          </button>
+        <div>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm bookingInfo={cartInfo}  />
+          </Elements>
         </div>
       </div>
     </section>

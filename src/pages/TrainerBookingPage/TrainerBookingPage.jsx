@@ -26,7 +26,7 @@ const TrainerBookingPage = () => {
       return data;
     },
   });
-  // console.log(slot);
+  console.log(slot);
 
   const handlePackageSelection = (selectedPackage) => {
     setPackageSelection(selectedPackage);
@@ -50,7 +50,8 @@ const TrainerBookingPage = () => {
     if (!packageSelection) {
       toast.error("Please Select a Package to join");
     }
-    const bookingData = {
+    const cartData = {
+      trainerId: slot.trainer.id,
       trainerName: slot.trainer.name,
       slotName: slot.slotName,
       packageName: packageSelection,
@@ -59,15 +60,12 @@ const TrainerBookingPage = () => {
       email: user?.email,
       slotId: slot._id,
     };
-    console.log(bookingData);
 
     try {
-      const { data } = await axiosSecure.post("/bookings", bookingData);
+      const { data } = await axiosSecure.put("/carts", cartData);
       console.log(data);
-      if (data.insertedId) {
-        navigate("/payment");
-        toast.success("Please Pay to Confirm booking");
-      }
+      navigate("/payment");
+      toast.success("Please Pay to Confirm booking");
     } catch (err) {
       console.log(err);
       toast.error(err.message);

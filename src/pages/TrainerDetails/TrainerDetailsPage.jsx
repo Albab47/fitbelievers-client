@@ -29,8 +29,6 @@ const TrainerDetailsPage = () => {
     experience,
   } = trainer;
 
-  console.log(trainer);
-
   if (isLoading) return <SecondaryLoader />;
 
   return (
