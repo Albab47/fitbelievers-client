@@ -28,6 +28,7 @@
     "react-router-dom": "^6.23.1",
     "react-select": "^5.8.0",
     "react-spinners": "^0.13.8",
+    "recharts": "^2.12.7",
     "sort-by": "^1.2.0",
     "swiper": "^11.1.4"
   },

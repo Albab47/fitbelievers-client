@@ -4,11 +4,22 @@ import { useQuery } from "@tanstack/react-query";
 import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 import { Badge } from "flowbite-react";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import MainModal from "../../../components/Modal/MainModal";
+import ErrorMsg from "../../../components/Shared/ErrorMsg/ErrorMsg";
+import { useForm } from "react-hook-form";
 
 const ApTrainerDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const { data: trainer = {}, isLoading } = useQuery({
     queryKey: ["appliedTrainer", id],
@@ -32,6 +43,8 @@ const ApTrainerDetails = () => {
     background,
   } = trainer;
 
+  console.log(trainer._id);
+
   const handleAccept = async () => {
     console.log(trainer._id);
     delete trainer._id;
@@ -42,6 +55,23 @@ const ApTrainerDetails = () => {
       console.log(data);
       toast.success("Trainer Accepted Successfully");
       navigate("/dashboard/all-trainers");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onReject = async (feedbackData) => {
+    feedbackData.email = email;
+    console.log(feedbackData);
+
+    try {
+      const { data } = await axiosSecure.delete(
+        `/applied-trainers/${trainer._id}`,
+        feedbackData
+      );
+      console.log(data);
+      toast.success("Trainer Rejected Successfully");
+      navigate("/dashboard/applied-trainers");
     } catch (err) {
       console.log(err);
     }
@@ -119,7 +149,10 @@ const ApTrainerDetails = () => {
 
         <div className="flex justify-end mt-8">
           <div className="space-x-2">
-            <button className="py-2 text-sm font-semibold px-4 bg-red-600 text-white rounded-lg">
+            <button
+              onClick={() => setOpenModal(true)}
+              className="py-2 text-sm font-semibold px-4 bg-red-600 text-white rounded-lg"
+            >
               Reject
             </button>
             <button
@@ -131,6 +164,43 @@ const ApTrainerDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* reject modal */}
+      <MainModal openModal={openModal} setOpenModal={setOpenModal}>
+        <div className="flex-auto p-5">
+          <div className="space-y-4">
+            <span className="text-dark font-semibold text-md">
+              Personal info:
+            </span>
+            <h3 className="text-md text-light">Name: {name}</h3>
+
+            <p className="mt-1 text-md text-light">Expertise in: {expertise}</p>
+            <p className="mt-1 text-md text-light">Email: {email}</p>
+            <p className="mt-1 text-md text-light">
+              Available time: {availableTime}
+            </p>
+            <p className="mt-1 text-md text-light">Experience: {experience}</p>
+            <p className="mt-1 text-md text-light">Age: {age}</p>
+          </div>
+
+          <form onSubmit={handleSubmit(onReject)}>
+            <textarea
+              id="feedback"
+              className="mt-2 w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm"
+              rows="4"
+              placeholder="write feedback"
+              {...register("feedback", {
+                required: "feedback is required",
+              })}
+            ></textarea>
+            {errors.feedback && <ErrorMsg>{errors.feedback?.message}</ErrorMsg>}
+
+            <button type="submit" className="py-1 px-3 bg-primary text-dark">
+              Submit
+            </button>
+          </form>
+        </div>
+      </MainModal>
     </section>
   );
 };

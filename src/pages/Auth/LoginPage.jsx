@@ -51,6 +51,7 @@ const LoginPage = () => {
       }
     } catch (err) {
       const errorCode = err.code;
+      setLoading(false)
       toast.error(errorCode);
     }
   };

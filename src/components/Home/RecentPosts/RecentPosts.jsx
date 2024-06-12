@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { Link } from "react-router-dom";
 
 const RecentPosts = () => {
   const axiosCommon = useAxiosCommon();
@@ -25,7 +26,7 @@ const RecentPosts = () => {
 
         <div className="py-8 md:py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {posts?.map((post) => (
-            <div key={post._id}>
+            <Link to={`/community`} key={post._id} className="group">
               <img
                 className="object-cover object-center w-full h-64 rounded-lg lg:h-80"
                 src={post?.image}
@@ -57,7 +58,7 @@ const RecentPosts = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -39,12 +39,6 @@ const Sidebar = () => {
         <div className="flex flex-col justify-between flex-1 mt-6">
           <SidebarContext.Provider value={{ expended }}>
             <nav>
-              <MenuItem
-                label="Dashboard"
-                address="/dashboard"
-                icon={RxDashboard}
-              />
-
               {role === "admin" && <AdminMenu />}
               {role === "trainer" && <TrainerMenu />}
               {role === "member" && <MemberMenu />}

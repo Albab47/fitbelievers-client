@@ -62,7 +62,7 @@ const BeATrainerPage = () => {
   const onSubmit = async (trainerData) => {
     console.log(trainerData);
     setLoading(true)
-    const imgURL = await uploadImage(trainerData.photo);
+    const imgURL = await uploadImage(trainerData?.photo);
     trainerData.photo = imgURL;
 
     try {

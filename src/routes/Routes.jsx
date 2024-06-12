@@ -24,6 +24,7 @@ import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import BookedTrainers from "../pages/Dashboard/Member/BookedTrainers";
 import AddForumPage from "../pages/Dashboard/AddForumPage/AddForumPage";
 import CommunityPage from "../pages/Community/CommunityPage";
+import Balance from "../pages/Dashboard/Admin/Balance";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
     element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
     children: [
       // Admin route
+      {
+        path: "balance",
+        element: <AdminRoute><Balance /></AdminRoute>,
+      },
       {
         path: "applied-trainers",
         element: <AdminRoute><AppliedTrainers /></AdminRoute>,

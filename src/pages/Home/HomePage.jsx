@@ -10,6 +10,7 @@ import Team from "../../components/Home/Team/Team";
 import Loader from "../../components/Shared/Loader/Loader";
 import Newsletter from "../../components/Home/Newsletter/Newsletter";
 import RecentPosts from "../../components/Home/RecentPosts/RecentPosts";
+import Footer from "../../components/Shared/Footer/Footer";
 
 const HomePage = () => {
   const axiosCommon = useAxiosCommon();
@@ -34,6 +35,7 @@ const HomePage = () => {
       <RecentPosts />
       <Testimonials />
       <Newsletter />
+      <Footer />
     </div>
   );
 };
