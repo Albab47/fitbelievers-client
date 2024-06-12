@@ -7,7 +7,7 @@ import { useState } from "react";
 const AllTrainersTable = ({ trainers, refetch }) => {
   const axiosSecure = useAxiosSecure();
   const [loading, setLoading] = useState(false)
-  console.log(trainers);
+  // console.log(trainers);
 
   const handleDeleteTrainer = async (id) => {
     console.log(id);
@@ -83,21 +83,21 @@ const AllTrainersTable = ({ trainers, refetch }) => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                   {trainers?.map((trainer) => (
-                    <tr key={trainer._id}>
+                    <tr key={trainer?._id}>
                       <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
                           <div className="flex items-center gap-x-2">
                             <img
                               className="object-cover w-10 h-10 rounded-full"
-                              src={trainer.photo}
+                              src={trainer?.photo}
                               alt=""
                             />
                             <div>
                               <h2 className="font-medium text-gray-800 dark:text-white ">
-                                {trainer.name}
+                                {trainer?.name}
                               </h2>
                               <p className="text-sm font-normal text-gray-600 dark:text-gray-400">
-                                {trainer.email}
+                                {trainer?.email}
                               </p>
                             </div>
                           </div>

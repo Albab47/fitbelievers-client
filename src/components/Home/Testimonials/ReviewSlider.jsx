@@ -1,8 +1,8 @@
 import { IoMdQuote } from "react-icons/io";
-import reviews from "../../../../public/reviews.json";
 import { Avatar } from "flowbite-react";
+import PropTypes from "prop-types"; 
 
-const ReviewSlider = () => {
+const ReviewSlider = ({reviews}) => {
   return (
     <swiper-container
       class="mySwiper"
@@ -29,7 +29,7 @@ const ReviewSlider = () => {
         },
       })}
     >
-      {reviews.map((review, idx) => (
+      {reviews?.map((review, idx) => (
         <swiper-slide key={idx}>
           <div className="relative p-8 rounded-lg bg-gray-50">
             <p className="leading-loose text-gray-500 dark:text-gray-400">
@@ -37,7 +37,7 @@ const ReviewSlider = () => {
             </p>
 
             <div className="flex items-center mt-8 -mx-2">
-              <Avatar rounded />
+              <Avatar rounded img={review.photo} className="object-cover" />
 
               <div className="mx-2">
                 <h1 className="font-semibold text-gray-800 dark:text-white">
@@ -57,6 +57,11 @@ const ReviewSlider = () => {
       ))}
     </swiper-container>
   );
+};
+
+
+ReviewSlider.propTypes = {
+  reviews: PropTypes.array
 };
 
 export default ReviewSlider;

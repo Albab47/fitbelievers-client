@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 const ClassCard = ({ classData }) => {
   const { image, name, description, trainers, numberOfBookings } = classData;
 
-  console.log(trainers);
-
   return (
     <div className="block rounded-xl p-5 shadow-sm border shadow-gray-100">
       <div className="relative">

@@ -1,6 +1,23 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import ReviewSlider from "./ReviewSlider";
+import SecondaryLoader from "../../Shared/Loader/SecondaryLoader";
 
 const Testimonials = () => {
+  const axiosCommon = useAxiosCommon()
+  
+  const { data: reviews, isLoading } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const { data } = await axiosCommon(`/reviews`);
+      return data;
+    },
+  });
+
+  console.log(reviews);
+
+  if(isLoading) return <SecondaryLoader />
+  
   return (
     <section className="bg-white dark:bg-gray-900">
       <div className="container 2xl:px-36 px-6 py-10 mx-auto">
@@ -22,7 +39,7 @@ const Testimonials = () => {
           </div>
         </div>
 
-        <ReviewSlider />
+        <ReviewSlider reviews={reviews} />
       </div>
     </section>
   );

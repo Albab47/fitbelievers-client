@@ -79,7 +79,7 @@ const ApTrainerDetails = () => {
 
         <div className="mt-6">
           <span className="font-semibold text-light">Skills:</span>
-          {trainer.skills && (
+          {trainer?.skills && (
             <div className="mt-1.5 flex flex-wrap gap-2">
               {skills?.map((skill, i) => (
                 <Badge key={i} color={"lime"} size="sm">
@@ -103,7 +103,7 @@ const ApTrainerDetails = () => {
           <div>
             <span className="font-semibold text-light">Qualification: </span>
             <ul className="list-disc list-inside pl-2 mt-1.5">
-              {qualifications?.split(",").map((item, i) => (
+              {qualifications?.split(",")?.map((item, i) => (
                 <li key={i}>{item}</li>
               ))}
             </ul>

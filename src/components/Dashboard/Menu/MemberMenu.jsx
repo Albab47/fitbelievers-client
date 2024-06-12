@@ -12,7 +12,7 @@ const MemberMenu = () => {
       />
       <MenuItem address="/dashboard/profile" label="Profile" icon={MdPerson} />
       <MenuItem
-        address="/dashboard/booked-trainer"
+        address="/dashboard/booked-trainers"
         label="Booked Trainer"
         icon={MdEventAvailable}
       />

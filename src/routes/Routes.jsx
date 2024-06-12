@@ -21,6 +21,7 @@ import AllTrainers from "../pages/Dashboard/Admin/AllTrainers";
 import ManageSlots from "../pages/Dashboard/Tainer/ManageSlots";
 import TrainerBookingPage from "../pages/TrainerBookingPage/TrainerBookingPage";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
+import BookedTrainers from "../pages/Dashboard/Member/BookedTrainers";
 
 const router = createBrowserRouter([
   {
@@ -90,7 +91,7 @@ const router = createBrowserRouter([
         path: "subscribers",
         element: <AdminRoute><NewsletterSubscribers /></AdminRoute>,
       },
-      // Trainers route
+      // Trainers routes
       {
         path: "add-slot",
         element: <TrainersRoute><AddSlot /></TrainersRoute>,
@@ -98,6 +99,11 @@ const router = createBrowserRouter([
       {
         path: "manage-slots",
         element: <TrainersRoute><ManageSlots /></TrainersRoute>,
+      },
+      // Member Routes
+      {
+        path: "booked-trainers",
+        element: <PrivateRoute><BookedTrainers /></PrivateRoute>,
       },
     ]
   },

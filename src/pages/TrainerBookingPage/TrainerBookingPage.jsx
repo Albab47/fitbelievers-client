@@ -26,7 +26,6 @@ const TrainerBookingPage = () => {
       return data;
     },
   });
-  console.log(slot);
 
   const handlePackageSelection = (selectedPackage) => {
     setPackageSelection(selectedPackage);
@@ -46,9 +45,11 @@ const TrainerBookingPage = () => {
     }
   };
 
+  console.log(slot);
+
   const handleJoin = async () => {
     if (!packageSelection) {
-      toast.error("Please Select a Package to join");
+      return toast.error("Please Select a Package to join");
     }
     const cartData = {
       trainerId: slot.trainer.id,
@@ -59,6 +60,7 @@ const TrainerBookingPage = () => {
       name: user?.displayName,
       email: user?.email,
       slotId: slot._id,
+      classes: slot.classesIncludes,
     };
 
     try {

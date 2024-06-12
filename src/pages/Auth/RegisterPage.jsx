@@ -215,7 +215,7 @@ const RegisterPage = () => {
                     <ErrorMsg>{errors.password?.message}</ErrorMsg>
                   )}
 
-                  <span className="absolute text-gray-500 inset-y-0 end-0 grid place-content-center px-4">
+                  <span className="absolute text-gray-500 top-3.5 end-0 grid place-content-center px-4">
                     {showPassword ? (
                       <IoMdEyeOff onClick={handleShowPassword} />
                     ) : (
