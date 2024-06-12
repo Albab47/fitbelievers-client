@@ -5,20 +5,24 @@ import { useQuery } from "@tanstack/react-query";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import PageHeader from "../../components/Shared/PageHeader/PageHeader";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "flowbite-react";
 import PostCard from "../../components/Community/PostCard/PostCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const CommunityPage = () => {
   const axiosCommon = useAxiosCommon();
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
-  const { count } = useDataCount("postCount", "posts");
+  const { count, countLoading } = useDataCount("postCount", "posts");
   const numberOfPages = Math.ceil(count / itemsPerPage);
-//   const [upvote, setUpvote] = useState(null);
-//   const [downvote, setDownvote] = useState(null);
+  const navigate = useNavigate();
+  //   const [upvote, setUpvote] = useState(null);
+  //   const [downvote, setDownvote] = useState(null);
 
   const {
     data: posts,
@@ -39,6 +43,11 @@ const CommunityPage = () => {
   };
 
   const handleUpvote = async (id) => {
+    if (!user) {
+      navigate("/login");
+      toast.error("You Need to login first to Upvote");
+    }
+
     try {
       const { data } = await axiosSecure.patch(`/posts/upvote/${id}`, {
         upvote: 1,
@@ -51,6 +60,11 @@ const CommunityPage = () => {
   };
 
   const handleDownvote = async (id) => {
+    if (!user) {
+      navigate("/login");
+      toast.error("You Need to login first to Downvote");
+    }
+
     try {
       const { data } = await axiosSecure.patch(`/posts/downvote/${id}`, {
         downvote: 1,
@@ -62,7 +76,7 @@ const CommunityPage = () => {
     }
   };
 
-  if (isLoading) {
+  if (isLoading || countLoading) {
     return <SecondaryLoader />;
   }
 
