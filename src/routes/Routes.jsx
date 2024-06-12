@@ -23,6 +23,7 @@ import TrainerBookingPage from "../pages/TrainerBookingPage/TrainerBookingPage";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import BookedTrainers from "../pages/Dashboard/Member/BookedTrainers";
 import AddForumPage from "../pages/Dashboard/AddForumPage/AddForumPage";
+import CommunityPage from "../pages/Community/CommunityPage";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: "/trainer-booking/:id",
         element: <PrivateRoute><TrainerBookingPage /></PrivateRoute>,
+      },
+      {
+        path: "/community",
+        element: <CommunityPage />,
       },
       {
         path: "/payment",
