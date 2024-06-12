@@ -10,12 +10,15 @@ import { useForm } from "react-hook-form";
 import ErrorMsg from "../../../components/Shared/ErrorMsg/ErrorMsg";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Rating from "react-rating";
+import { FaRegStar, FaStar } from "react-icons/fa6";
 
 const BookedTrainers = () => {
   const axiosSecure = useAxiosSecure();
   const [openModal, setOpenModal] = useState(false);
   const { user } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [rating, setRating] = useState(0);
   const {
     register,
     handleSubmit,
@@ -32,22 +35,22 @@ const BookedTrainers = () => {
     },
   });
 
-  const onReviewSubmit = async(data) => {
+  const onReviewSubmit = async (data) => {
     // Save review data to server
     const reviewData = {
       name: user?.displayName,
       email: user?.email,
       photo: user?.photoURL,
+      rating: rating,
       ...data,
     };
     console.log(reviewData);
-
     try {
-      const {data} = await axiosSecure.post('/reviews', reviewData);
+      const { data } = await axiosSecure.post("/reviews", reviewData);
       console.log(data);
-      if(data.insertedId) {
-        toast.success("Your Review Submitted Successfully")
-        navigate("/")
+      if (data.insertedId) {
+        toast.success("Your Review Submitted Successfully");
+        navigate("/");
       }
     } catch (err) {
       console.log(err.message);
@@ -152,10 +155,19 @@ const BookedTrainers = () => {
       <MainModal openModal={openModal} setOpenModal={setOpenModal}>
         <div className="flex-auto p-5">
           <h4 className="text-2xl mb-4 text-black font-semibold">
-            Write your review
+            Give us a review
           </h4>
           <form onSubmit={handleSubmit(onReviewSubmit)}>
             {/* Rating */}
+            <div className="flex justify-center">
+              <Rating
+                value={rating}
+                onChange={setRating}
+                emptySymbol={<FaRegStar className="size-7 text-amber-500" />}
+                fullSymbol={<FaStar className="size-7 text-amber-500" />}
+                fractions={2}
+              />
+            </div>
 
             {/* designation */}
             <div className="relative w-full mb-4">

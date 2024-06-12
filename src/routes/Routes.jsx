@@ -22,6 +22,7 @@ import ManageSlots from "../pages/Dashboard/Tainer/ManageSlots";
 import TrainerBookingPage from "../pages/TrainerBookingPage/TrainerBookingPage";
 import PaymentPage from "../pages/PaymentPage/PaymentPage";
 import BookedTrainers from "../pages/Dashboard/Member/BookedTrainers";
+import AddForumPage from "../pages/Dashboard/AddForumPage/AddForumPage";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +100,11 @@ const router = createBrowserRouter([
       {
         path: "manage-slots",
         element: <TrainersRoute><ManageSlots /></TrainersRoute>,
+      },
+      // Member trainer common route
+      {
+        path: "add-blog",
+        element: <PrivateRoute><AddForumPage /></PrivateRoute>,
       },
       // Member Routes
       {

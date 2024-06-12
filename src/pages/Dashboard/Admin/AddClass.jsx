@@ -54,10 +54,10 @@ const AddClass = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gray-100 py-6 flex flex-col justify-center sm:py-8">
-      <div className="relative py-3 sm:max-w-2xl sm:mx-auto">
-        <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
-          <div className="mx-auto">
+    <div className="bg-gray-100 py-6 flex flex-col justify-center sm:py-8">
+      <div className="py-3 mx-auto">
+        <div className="px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+          <div className="">
             {/* form header */}
             <header className="flex items-center space-x-5">
               <div className="h-14 w-14 bg-lime-50 font-bold rounded-full flex flex-shrink-0 justify-center items-center text-primary text-3xl font-mono">
