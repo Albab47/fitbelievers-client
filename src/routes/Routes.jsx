@@ -25,6 +25,8 @@ import BookedTrainers from "../pages/Dashboard/Member/BookedTrainers";
 import AddForumPage from "../pages/Dashboard/AddForumPage/AddForumPage";
 import CommunityPage from "../pages/Community/CommunityPage";
 import Balance from "../pages/Dashboard/Admin/Balance";
+import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
+import ProfilePage from "../pages/Dashboard/Member/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -111,7 +113,7 @@ const router = createBrowserRouter([
         path: "manage-slots",
         element: <TrainersRoute><ManageSlots /></TrainersRoute>,
       },
-      // Member trainer common route
+      // Member and trainer common route
       {
         path: "add-blog",
         element: <PrivateRoute><AddForumPage /></PrivateRoute>,
@@ -120,6 +122,14 @@ const router = createBrowserRouter([
       {
         path: "booked-trainers",
         element: <PrivateRoute><BookedTrainers /></PrivateRoute>,
+      },
+      {
+        path: "activity-log",
+        element: <PrivateRoute><ActivityLog /></PrivateRoute>,
+      },
+      {
+        path: "profile",
+        element: <PrivateRoute><ProfilePage /></PrivateRoute>,
       },
     ]
   },

@@ -14,7 +14,6 @@ pass: #Admin001
 
 ## 👇 Features
 
-
 ## ⭐ Npm Packages I used in this project
 
 - React Rating

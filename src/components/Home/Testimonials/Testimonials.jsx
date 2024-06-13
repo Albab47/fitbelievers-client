@@ -14,8 +14,6 @@ const Testimonials = () => {
     },
   });
 
-  console.log(reviews);
-
   if(isLoading) return <SecondaryLoader />
   
   return (

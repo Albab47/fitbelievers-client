@@ -1,32 +1,8 @@
 import PropTypes from "prop-types";
 import { FaTrashAlt } from "react-icons/fa";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
-import { useState } from "react";
 
-const AllTrainersTable = ({ trainers, refetch }) => {
-  const axiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(false)
-  // console.log(trainers);
-
-  const handleDeleteTrainer = async (id) => {
-    console.log(id);
-    setLoading(true)
-    
-    try {
-      const { data } = await axiosSecure.delete(`/trainers/${id}`);
-      console.log(data);
-      if (data.deletedCount > 0) {
-        toast.success("Trainer Deleted Successfully");
-        refetch();
-      }
-    } catch (err) {
-      console.log(err);
-      toast.error(err.message);
-    } finally {
-        setLoading(false)
-    }
-  };
+const AllTrainersTable = ({ trainers, handleDeleteTrainer, loading }) => {
+  console.log(trainers);
 
   return (
     <section className="container px-4 mx-auto">
@@ -153,7 +129,8 @@ const AllTrainersTable = ({ trainers, refetch }) => {
 
 AllTrainersTable.propTypes = {
   trainers: PropTypes.array,
-  refetch: PropTypes.func,
+  handleDeleteTrainer: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default AllTrainersTable;

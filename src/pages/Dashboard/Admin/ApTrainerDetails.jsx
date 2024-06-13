@@ -43,12 +43,9 @@ const ApTrainerDetails = () => {
     background,
   } = trainer;
 
-  console.log(trainer._id);
-
   const handleAccept = async () => {
     console.log(trainer._id);
     delete trainer._id;
-    console.log(trainer);
 
     try {
       const { data } = await axiosSecure.post("/trainers", trainer);
@@ -60,18 +57,21 @@ const ApTrainerDetails = () => {
     }
   };
 
-  const onReject = async (feedbackData) => {
-    feedbackData.email = email;
-    console.log(feedbackData);
+  const onReject = async (rejectionData) => {
+    rejectionData.status = "rejected";
+    console.log(rejectionData);
 
     try {
-      const { data } = await axiosSecure.delete(
-        `/applied-trainers/${trainer._id}`,
-        feedbackData
+      const { data } = await axiosSecure.patch(
+        `/users/${email}`,
+        rejectionData
       );
-      console.log(data);
-      toast.success("Trainer Rejected Successfully");
-      navigate("/dashboard/applied-trainers");
+
+      if (data.modifiedCount > 0) {
+        await axiosSecure.delete(`/applied-trainers/${trainer._id}`);
+        toast.success("Trainer Rejected Successfully");
+        navigate("/dashboard/applied-trainers");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -167,7 +167,7 @@ const ApTrainerDetails = () => {
 
       {/* reject modal */}
       <MainModal openModal={openModal} setOpenModal={setOpenModal}>
-        <div className="flex-auto p-5">
+        <div className="flex-auto">
           <div className="space-y-4">
             <span className="text-dark font-semibold text-md">
               Personal info:
@@ -184,20 +184,35 @@ const ApTrainerDetails = () => {
           </div>
 
           <form onSubmit={handleSubmit(onReject)}>
-            <textarea
-              id="feedback"
-              className="mt-2 w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm"
-              rows="4"
-              placeholder="write feedback"
-              {...register("feedback", {
-                required: "feedback is required",
-              })}
-            ></textarea>
-            {errors.feedback && <ErrorMsg>{errors.feedback?.message}</ErrorMsg>}
+            <div className="mt-6">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+                htmlFor="rejection-msg"
+              >
+                Rejection Message <sup className="text-red-600">*</sup>
+              </label>
+              <textarea
+                id="feedback"
+                className="mt-1 w-full rounded-lg border-gray-200 align-top shadow-sm sm:text-sm"
+                rows="4"
+                placeholder="write rejection message"
+                {...register("rejectionMsg", {
+                  required: "rejectionMsg is required",
+                })}
+              ></textarea>
+              {errors.rejectionMsg && (
+                <ErrorMsg>{errors.rejectionMsg?.message}</ErrorMsg>
+              )}
+            </div>
 
-            <button type="submit" className="py-1 px-3 bg-primary text-dark">
-              Submit
-            </button>
+            <div className="flex mt-5 justify-end">
+              <button
+                type="submit"
+                className="py-2 font-medium text-sm rounded-lg  px-5 bg-primary text-dark"
+              >
+                Submit
+              </button>
+            </div>
           </form>
         </div>
       </MainModal>

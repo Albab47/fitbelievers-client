@@ -45,12 +45,11 @@ const RecentPosts = () => {
 
                 <div className="flex items-center justify-between mt-4">
                   <div>
-                    <a
-                      href="#"
+                    <p
                       className="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500"
                     >
                       {post?.postedBy.name}
-                    </a>
+                    </p>
 
                     <p className="text-sm text-gray-500 dark:text-gray-400">
                      {post?.timestamp}
