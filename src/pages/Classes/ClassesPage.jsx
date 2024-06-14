@@ -15,7 +15,8 @@ const ClassesPage = () => {
   const [searchTxt, setSearchTxt] = useState('')
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
-  const { count } = useDataCount("classesCount", "classes");
+  const [count, setCount] = useState(0)
+  // const { count } = useDataCount("classesCount", "classes");
   const numberOfPages = Math.ceil(count / itemsPerPage);
 
   const { data: classes, isLoading } = useQuery({
@@ -24,7 +25,9 @@ const ClassesPage = () => {
       const { data } = await axiosCommon(
         `/classes?size=${itemsPerPage}&page=${currentPage}&search=${searchTxt}`
       );
-      return data;
+      console.log(data);
+      setCount(data.count)
+      return data.classes;
     },
   });
 
