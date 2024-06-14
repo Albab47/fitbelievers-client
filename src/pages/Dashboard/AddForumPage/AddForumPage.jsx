@@ -8,6 +8,7 @@ import { MdOutlineFileUpload } from "react-icons/md";
 import { uploadImage } from "../../../utils/api";
 import toast from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const AddForumPage = () => {
   const { role } = useRole();
@@ -68,6 +69,8 @@ const AddForumPage = () => {
 
   return (
     <div className="flex items-center justify-center p-12">
+      <HelmetTitle title="FitBelievers | Add New Post" />
+      
       {/* <!-- Author: FormBold Team --> */}
       <div className="mx-auto w-full max-w-[550px] bg-white">
         <form onSubmit={handleSubmit(onPostSubmit)} className="py-6 px-9">

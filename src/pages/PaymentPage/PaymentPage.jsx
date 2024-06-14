@@ -7,6 +7,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../components/CheckoutForm/CheckoutForm";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -29,6 +30,8 @@ const PaymentPage = () => {
 
   return (
     <section className="min-h-screen grid place-content-center">
+      <HelmetTitle title="FitBelievers | Payment" />
+      
       <div className="relative space-y-3 block max-w-sm overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-8">
         <header>
           <h1 className="text-primary mb-6 text-xl text-center font-bold bg-lime-950 p-5 rounded-xl">

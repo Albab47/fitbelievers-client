@@ -5,6 +5,7 @@ import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import ActivityLogTable from "../../../components/Dashboard/Tables/ActivityLogTable";
 import MainModal from "../../../components/Modal/MainModal";
 import { useState } from "react";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const ActivityLog = () => {
   const axiosSecure = useAxiosSecure();
@@ -34,6 +35,7 @@ const ActivityLog = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Activity Log" />
       <PageTitle title={"Activity of Users"} />
 
       {/* data table */}

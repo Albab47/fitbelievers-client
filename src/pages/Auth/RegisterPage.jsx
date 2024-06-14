@@ -13,6 +13,7 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useState } from "react";
 import { uploadImage } from "../../utils/api";
 import { Button } from "flowbite-react";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const RegisterPage = () => {
   const { createUser, updateUserProfile, loading, setLoading } = useAuth();
@@ -55,7 +56,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <section className=" h-screen flex items-center justify-center">
+    <section className="h-screen flex items-center justify-center">
+      <HelmetTitle title="FitBelievers | Register" />
+      
       <div className="lg:grid lg:max-w-6xl mx-auto rounded-xl bg-white shadow-lg lg:grid-cols-12">
         <section className="relative rounded-xl bg-gray-900  flex h-32 items-end lg:col-span-5 lg:h-full xl:col-span-6">
           <img

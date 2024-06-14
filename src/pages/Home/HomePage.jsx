@@ -11,6 +11,7 @@ import Loader from "../../components/Shared/Loader/Loader";
 import Newsletter from "../../components/Home/Newsletter/Newsletter";
 import RecentPosts from "../../components/Home/RecentPosts/RecentPosts";
 import Footer from "../../components/Shared/Footer/Footer";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const HomePage = () => {
   const axiosCommon = useAxiosCommon();
@@ -27,6 +28,7 @@ const HomePage = () => {
 
   return (
     <div>
+      <HelmetTitle title="FitBelievers | Home" />
       <Banner />
       <Features />
       <FeaturesClasses classes={classes} />

@@ -7,6 +7,7 @@ import BeATrainer from "../../components/TrainerDetails/BeATrainer";
 import { FaRegClock } from "react-icons/fa6";
 import { LuCalendarDays } from "react-icons/lu";
 import { IoIosFitness } from "react-icons/io";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const TrainerDetailsPage = () => {
   const { id } = useParams();
@@ -33,6 +34,8 @@ const TrainerDetailsPage = () => {
 
   return (
     <section className="bg-gray-50 py-16">
+      <HelmetTitle title={`FitBelievers | Trainer ${name}`} />
+
       <div className="container 2xl:px-36">
         {/* trainer info */}
         <section className="max-w-6xl mb-8 bg-white shadow-sm mx-auto p-6 sm:p-8 rounded-xl dark:bg-gray-800">

@@ -5,6 +5,7 @@ import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useTrainers from "../../../hooks/useTrainers";
 import toast from "react-hot-toast";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const AllTrainers = () => {
   const { trainers, isLoading, refetch } = useTrainers();
@@ -34,6 +35,7 @@ const AllTrainers = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Trainers" />
       <PageTitle title={"All trainers list"} />
 
       {/* data table */}

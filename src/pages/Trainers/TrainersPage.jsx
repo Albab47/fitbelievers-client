@@ -1,3 +1,4 @@
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import SectionTitle from "../../components/Shared/SectionTitle/SectionTitle";
 import TrainerCard from "../../components/Trainers/TrainerCard";
@@ -10,6 +11,8 @@ const TrainersPage = () => {
 
   return (
     <section>
+      <HelmetTitle title="FitBelievers | Trainers" />
+      
       <div className="container 2xl:px-36">
         <SectionTitle heading={"Our Expert Trainers"} />
 

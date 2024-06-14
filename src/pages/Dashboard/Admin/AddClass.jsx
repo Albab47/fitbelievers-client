@@ -8,6 +8,7 @@ import ErrorMsg from "../../../components/Shared/ErrorMsg/ErrorMsg";
 import { MdOutlineFileUpload } from "react-icons/md";
 import { uploadImage } from "../../../utils/api";
 import toast from "react-hot-toast";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const AddClass = () => {
   const axiosSecure = useAxiosSecure();
@@ -55,6 +56,8 @@ const AddClass = () => {
 
   return (
     <div className="bg-gray-100 py-6 flex flex-col justify-center sm:py-8">
+      <HelmetTitle title="Dashboard | Add Class" />
+      
       <div className="py-3 mx-auto">
         <div className="px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
           <div className="">

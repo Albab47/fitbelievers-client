@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Rating from "react-rating";
 import { FaRegStar, FaStar } from "react-icons/fa6";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const BookedTrainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -61,6 +62,7 @@ const BookedTrainers = () => {
 
   return (
     <section className="container px-4">
+      <HelmetTitle title="Dashboard | Booked Trainers" />
       <PageTitle title={"Booked Trainers"} />
 
       {data?.map((trainer) => (

@@ -9,6 +9,7 @@ import { Button } from "flowbite-react";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const TrainerBookingPage = () => {
   const { id } = useParams();
@@ -78,6 +79,7 @@ const TrainerBookingPage = () => {
 
   return (
     <div>
+      <HelmetTitle title="FitBelievers | Trainer Booking" />
       <PageHeader heading="Booking Page" />
 
       <section className="container 2xl:px-36 my-16">

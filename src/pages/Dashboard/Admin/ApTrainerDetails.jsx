@@ -8,6 +8,7 @@ import { useState } from "react";
 import MainModal from "../../../components/Modal/MainModal";
 import ErrorMsg from "../../../components/Shared/ErrorMsg/ErrorMsg";
 import { useForm } from "react-hook-form";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const ApTrainerDetails = () => {
   const { id } = useParams();
@@ -81,6 +82,8 @@ const ApTrainerDetails = () => {
 
   return (
     <section className="container px-4">
+      <HelmetTitle title="Dashboard | Applied trainer details" />
+      
       <div className="relative block overflow-hidden max-w-5xl my-16 mx-auto px-6 rounded-lg border bg-white p-4 sm:p-6 lg:p-8">
         <div className="sm:flex sm:flex-row-reverse sm:justify-between sm:gap-4">
           <div className="sm:shrink-0 flex justify-center mb-6 sm:mb-0">

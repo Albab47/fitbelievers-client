@@ -12,6 +12,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import { uploadImage } from "../../utils/api";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const animatedComponents = makeAnimated();
 
@@ -84,6 +85,8 @@ const BeATrainerPage = () => {
 
   return (
     <div>
+      <HelmetTitle title="FitBelievers | Be a Trainer" />
+      
       <PageHeader heading="Be a Trainer" />
 
       <section className="container 2xl:px-36 my-12">

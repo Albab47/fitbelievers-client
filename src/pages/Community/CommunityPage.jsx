@@ -11,6 +11,7 @@ import PostCard from "../../components/Community/PostCard/PostCard";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const CommunityPage = () => {
   const axiosCommon = useAxiosCommon();
@@ -88,6 +89,7 @@ const CommunityPage = () => {
 
   return (
     <div>
+      <HelmetTitle title="FitBelievers | Community" />
       <PageHeader heading="Community Posts" />
 
       <div className="container 2xl:px-36 my-12 flex justify-between mx-auto">

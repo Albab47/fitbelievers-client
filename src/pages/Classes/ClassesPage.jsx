@@ -7,6 +7,7 @@ import { useState } from "react";
 import useDataCount from "../../hooks/useDataCount";
 import SecondaryLoader from "../../components/Shared/Loader/SecondaryLoader";
 import ClassCard from "../../components/Shared/ClassCard/ClassCard";
+import HelmetTitle from "../../components/Shared/HelmetTitle/HelmetTitle";
 
 const ClassesPage = () => {
   const axiosCommon = useAxiosCommon();
@@ -41,6 +42,7 @@ const ClassesPage = () => {
 
   return (
     <div>
+      <HelmetTitle title="FitBelievers | Classes" />
       <PageHeader heading="All Classes" />
 
       <div className="container 2xl:px-36 my-12">

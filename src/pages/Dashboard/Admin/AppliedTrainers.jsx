@@ -3,6 +3,7 @@ import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import AppliedTrainerTable from "../../../components/Dashboard/Tables/AppliedTrainerTable";
 import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const AppliedTrainers = () => {
   const axiosSecure = useAxiosSecure();
@@ -19,6 +20,7 @@ const AppliedTrainers = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Applied Trainers" />
       <PageTitle title={"Applied trainers list"} />
 
       {/* data table */}

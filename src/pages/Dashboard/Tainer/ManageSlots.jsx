@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import SlotsTable from "../../../components/Dashboard/Tables/SlotsTable";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const ManageSlots = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,6 +22,7 @@ const ManageSlots = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Manage Slots" />
       <PageTitle title={"Your Slot List"} />
 
       {/* data table */}

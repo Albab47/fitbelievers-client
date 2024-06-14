@@ -11,6 +11,7 @@ import { Checkbox, Label } from "flowbite-react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import toast from "react-hot-toast";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 const animatedComponents = makeAnimated();
 
 const slotNameOptions = [
@@ -114,6 +115,7 @@ const AddSlot = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Add Slot" />
       <PageTitle title={"Add New slot"} />
 
       <section className="max-w-5xl p-6 mx-auto bg-white rounded-lg shadow-md dark:bg-gray-800 mt-2">

@@ -5,6 +5,7 @@ import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 import PaymentsTable from "../../../components/Dashboard/Tables/PaymentsTable";
 import { PureComponent } from "react";
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Legend } from "recharts";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 const COLORS = ["#0088FE", "#00C49F"];
 
 const RADIAN = Math.PI / 180;
@@ -52,6 +53,7 @@ const Balance = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Balance" />
       <PageTitle title={"Balance"} />
 
       <div className="mt-12">

@@ -6,16 +6,16 @@ import ErrorMsg from "../../../components/Shared/ErrorMsg/ErrorMsg";
 import { Button } from "flowbite-react";
 import toast from "react-hot-toast";
 import { uploadImage } from "../../../utils/api";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const ProfilePage = () => {
   const { user, updateUserProfile, loading, setLoading } = useAuth();
-  const [updateProfile, setUpdateProfile] = useState(false);
+  // const [updateProfile, setUpdateProfile] = useState(false);
   const [imageTxt, setImageText] = useState("");
   const [imgPreview, setImgPreview] = useState();
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
     formState: { errors },
   } = useForm();
@@ -48,6 +48,7 @@ const ProfilePage = () => {
 
   return (
     <section className="mt-12 container px-4 md:mt-48 flex justify-center">
+      <HelmetTitle title="Dashboard | Profile" />
       <div className=" flex flex-col justify-center p-6 shadow-md rounded-xl sm:px-12 bg-gray-50 text-gray-800">
         <img
           src={user.photoURL}

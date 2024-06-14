@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import SubscribersTable from "../../../components/Dashboard/Tables/SubscribersTable";
+import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
 
 const NewsletterSubscribers = () => {
     const axiosSecure = useAxiosSecure();
@@ -21,6 +22,7 @@ const NewsletterSubscribers = () => {
 
   return (
     <div className="container px-4">
+      <HelmetTitle title="Dashboard | Newsletter Subscribers" />
       <PageTitle title={"Newsletter Subscribers List"} />
 
       {/* data table */}
