@@ -3,7 +3,7 @@ import SectionTitle from "../../Shared/SectionTitle/SectionTitle";
 import TrainerCard from "../../Trainers/TrainerCard";
 
 const Team = ({ trainers }) => {
-  //   console.log(trainers);
+    console.log(trainers);
 
   return (
     <section>

@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { Button } from "flowbite-react";
 import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const TrainerCard = ({ trainer = {}, isHome = false }) => {
   const {
@@ -11,8 +13,9 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
     background,
     experience,
     availableSlots,
-    skills,
   } = trainer;
+
+  console.log(trainer);
 
   return (
     <div
@@ -33,6 +36,32 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
             {name}
           </h3>
           <p className="text-sm">{expertise}</p>
+
+          <div className="flex justify-center mt-3 -mx-2">
+            <a
+              href="#"
+              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              aria-label="Facebook"
+            >
+              <FaFacebook />
+            </a>
+
+            <a
+              href="#"
+              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              aria-label="Facebook"
+            >
+              <FaXTwitter />
+            </a>
+
+            <a
+              href="#"
+              className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+              aria-label="Github"
+            >
+              <FaInstagram />
+            </a>
+          </div>
         </div>
         {isHome ? (
           <p className="text-pretty text-sm text-gray-500">{background}</p>

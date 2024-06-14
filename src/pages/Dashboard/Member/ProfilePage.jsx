@@ -60,7 +60,7 @@ const ProfilePage = () => {
               {user?.displayName}
             </h2>
             <p className="px-5 text-xs sm:text-base text-gray-600">
-              {user?.role}
+              <span className="font-medium">Last login:</span> {user?.metadata?.lastSignInTime}
             </p>
           </div>
 
