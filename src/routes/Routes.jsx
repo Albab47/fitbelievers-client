@@ -27,11 +27,13 @@ import CommunityPage from "../pages/Community/CommunityPage";
 import Balance from "../pages/Dashboard/Admin/Balance";
 import ActivityLog from "../pages/Dashboard/Member/ActivityLog";
 import ProfilePage from "../pages/Dashboard/Member/ProfilePage";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
