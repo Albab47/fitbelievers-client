@@ -6,6 +6,7 @@ import useTrainers from "../../hooks/useTrainers";
 
 const TrainersPage = () => {
   const { trainers, isLoading } = useTrainers();
+  console.log(trainers);
 
   if(isLoading) return <SecondaryLoader />
 

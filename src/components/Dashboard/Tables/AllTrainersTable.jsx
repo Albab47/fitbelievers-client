@@ -81,20 +81,20 @@ const AllTrainersTable = ({ trainers, handleDeleteTrainer, loading }) => {
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {trainer.expertise}
+                        {trainer?.expertise}
                       </td>
 
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center px-3 py-1 rounded-lg gap-x-2 bg-lime-100/60 dark:bg-gray-800">
                           <h2 className="text-sm font-normal text-lime-500">
-                            {trainer.availableTime}
+                            {trainer?.availableTime}
                           </h2>
                         </div>
                       </td>
 
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center py-1 gap-x-2  dark:bg-gray-800">
-                          {trainer.availableDays.map((day) => (
+                          {trainer?.availableDays?.map((day) => (
                             <h2
                               key={day}
                               className="text-sm font-normal text-gray-500"

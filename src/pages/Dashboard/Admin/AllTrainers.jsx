@@ -3,14 +3,24 @@ import PageTitle from "../../../components/Dashboard/Shared/PageTitle";
 import AllTrainersTable from "../../../components/Dashboard/Tables/AllTrainersTable";
 import SecondaryLoader from "../../../components/Shared/Loader/SecondaryLoader";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useTrainers from "../../../hooks/useTrainers";
 import toast from "react-hot-toast";
 import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+import { useQuery } from "@tanstack/react-query";
 
 const AllTrainers = () => {
-  const { trainers, isLoading, refetch } = useTrainers();
+  // const { trainers, isLoading, refetch } = useTrainers();
   const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxiosCommon();
   const [loading, setLoading] = useState(false);
+
+  const { data: trainers, isLoading } = useQuery({
+    queryKey: ["trainers"],
+    queryFn: async () => {
+      const { data } = await axiosCommon(`/trainers`);
+      return data;
+    },
+  });
 
   const handleDeleteTrainer = async (id) => {
     console.log(id);
@@ -42,7 +52,6 @@ const AllTrainers = () => {
       <AllTrainersTable
         trainers={trainers}
         handleDeleteTrainer={handleDeleteTrainer}
-        refetch={refetch}
         loading={loading}
       />
     </div>

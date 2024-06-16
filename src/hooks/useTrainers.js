@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "./useAxiosCommon";
 
-const useTrainers = (sort, limit) => {
+const useTrainers = (sort="", limit=0) => {
   const axiosCommon = useAxiosCommon();
 
   const { data: trainers, isLoading, refetch } = useQuery({
