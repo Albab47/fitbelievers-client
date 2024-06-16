@@ -16,7 +16,7 @@ const AddForumPage = () => {
   const axiosSecure = useAxiosSecure();
   const [imageTxt, setImageText] = useState("");
   const [loading, setLoading] = useState(false);
-  //   const navigate = useNavigate();
+    const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -58,7 +58,7 @@ const AddForumPage = () => {
         console.log(data);
         toast.success("Post Added Successfully");
         reset();
-        // navigate("/");
+        navigate("/community");
       }
     } catch (err) {
       console.error(err);
