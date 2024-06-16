@@ -37,7 +37,6 @@ const HomePage = () => {
       <RecentPosts />
       <Testimonials />
       <Newsletter />
-      <Footer />
     </div>
   );
 };

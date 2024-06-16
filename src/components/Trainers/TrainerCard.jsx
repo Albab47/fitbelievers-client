@@ -15,8 +15,6 @@ const TrainerCard = ({ trainer = {}, isHome = false }) => {
     availableSlots,
   } = trainer;
 
-  console.log(trainer);
-
   return (
     <div
       to={`/trainers/${_id}`}
