@@ -12,6 +12,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import toast from "react-hot-toast";
 import HelmetTitle from "../../../components/Shared/HelmetTitle/HelmetTitle";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
 const animatedComponents = makeAnimated();
 
 const slotNameOptions = [
@@ -43,6 +44,7 @@ const slotTimeOptions = [
 const AddSlot = () => {
   const { user, loading, setLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const axiosCommon = useAxiosCommon();
   const {
     register,
     handleSubmit,
@@ -66,8 +68,9 @@ const AddSlot = () => {
   const { data: classOptions = [] } = useQuery({
     queryKey: ["classOptions"],
     queryFn: async () => {
-      const { data } = await axiosSecure(`/classes?optionData=true`);
-      const options = data.map((option) => ({
+      const { data } = await axiosCommon(`/classes?optionData=true`);
+      console.log(data);
+      const options = data?.classes.map((option) => ({
         value: option.name,
         label: option.name,
       }));

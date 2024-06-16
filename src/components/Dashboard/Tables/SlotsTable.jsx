@@ -5,44 +5,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-const SlotsTable = ({ slots, refetch }) => {
-  const axiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(false);
-
-  const handleDeleteSlot = async (id) => {
-    // Confirmation
-    const result = await Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    });
-    if (result.isConfirmed) {
-      setLoading(true);
-      try {
-        const { data } = await axiosSecure.delete(`/slots/${id}`);
-        console.log(data);
-        if (data.modifiedCount > 0) {
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
-          refetch();
-        }
-      } catch (err) {
-        console.log(err);
-        toast.error(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-  };
-
-  console.log(slots);
+const SlotsTable = ({ slots, refetch, handleDeleteSlot, loading }) => {
+  console.log(slots[0]);
 
   return (
     <section className="container px-4 mx-auto">
@@ -108,16 +72,16 @@ const SlotsTable = ({ slots, refetch }) => {
                   {slots?.map((slot) => (
                     <tr key={slot._id}>
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {slot.slotName}
+                        {slot?.slotName}
                       </td>
 
                       <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        {slot.slotTime}
+                        {slot?.slotTime}
                       </td>
 
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                         <div className="inline-flex items-center py-1 gap-x-2  dark:bg-gray-800">
-                          {slot.slotDays.map((day) => (
+                          {slot?.slotDays?.map((day) => (
                             <h2
                               key={day}
                               className="text-sm font-normal text-gray-500"
@@ -142,17 +106,12 @@ const SlotsTable = ({ slots, refetch }) => {
                       </td>
 
                       <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                        <div className="flex flex-wrap items-center px-3 py-1 rounded-lg gap-x-2 bg-lime-100/60 dark:bg-gray-800">
-                          <h2 className="text-sm font-normal text-lime-500">
-                            {slot.bookedBy.map((member, i) => (
-                              <h2
-                                key={i}
-                                className="text-sm font-normal text-gray-500"
-                              >
-                                {member.email + ","}
-                              </h2>
-                            ))}
-                          </h2>
+                        <div className="flex flex-col items-center px-3 py-1 rounded-lg gap-x-2 bg-lime-100/60 dark:bg-gray-800">
+                          {slot?.bookedBy
+                            ? slot?.bookedBy.map((member, i) => (
+                                <p key={i} className="text-sm font-normal text-lime-500">{member.email}</p>
+                              ))
+                            : "No one booked yet"}
                         </div>
                       </td>
 
